@@ -46,8 +46,8 @@ public abstract class BaseLevel3 extends BaseLevel implements Level3 {
             OpProfiler.getInstance().processBlasCall(true, A, B, C);
 
         GemmParams params = new GemmParams(A, B, C);
+        Order = params.getOrdering();
 
-        int charOder = Order;
         if (A.data().dataType() == DataBuffer.Type.DOUBLE) {
             DefaultOpExecutioner.validateDataType(DataBuffer.Type.DOUBLE, params.getA(), params.getB(), params.getC());
             dgemm(Order, params.getTransA(), params.getTransB(), params.getM(), params.getN(), params.getK(), 1.0,
