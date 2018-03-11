@@ -1,10 +1,5 @@
 #!groovy
-
-/*
-    To redefine some job/run parameters,
-    please provide arguments to jenkinsBuilder step.
-    Example: jenkinsBuilder platforms: []
- */
+@Library('skymind@feature/change-build-logic') _
 
 jenkinsBuilder()
 
