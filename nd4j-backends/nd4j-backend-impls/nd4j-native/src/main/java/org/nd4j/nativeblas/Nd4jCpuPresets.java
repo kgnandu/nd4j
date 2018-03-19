@@ -129,7 +129,7 @@ public class Nd4jCpuPresets implements InfoMapper, BuildEnabled {
 
     @Override
     public void map(InfoMap infoMap) {
-        infoMap.put(new Info("thread_local", "ND4J_EXPORT", "INLINEDEF", "CUBLASWINAPI", "FORCEINLINE", "_CUDA_H", "_CUDA_D", "_CUDA_G", "_CUDA_HD").cppTypes().annotations())
+        infoMap.put(new Info("thread_local", "ND4J_EXPORT", "INLINEDEF", "CUBLASWINAPI", "FORCEINLINE", "_CUDA_H", "_CUDA_D", "_CUDA_G", "_CUDA_HD", "__ALL_OPS", "NOT_EXCLUDED").cppTypes().annotations())
                         .put(new Info("NativeOps").base("org.nd4j.nativeblas.NativeOps"))
                         .put(new Info("char").valueTypes("char").pointerTypes("@Cast(\"char*\") String",
                                         "@Cast(\"char*\") BytePointer"))
@@ -143,6 +143,7 @@ public class Nd4jCpuPresets implements InfoMapper, BuildEnabled {
 
         infoMap.put(new Info("__CUDACC__").define(false))
                .put(new Info("__JAVACPP_HACK__").define(true))
+               .put(new Info("__ALL_OPS").define(true))
                .put(new Info("MAX_UINT").translate(false))
                .put(new Info("std::initializer_list", "cnpy::NpyArray", "nd4j::NDArray::applyLambda", "nd4j::NDArray::applyPairwiseLambda",
                              "nd4j::graph::FlatResult", "nd4j::graph::FlatVariable").skip())
