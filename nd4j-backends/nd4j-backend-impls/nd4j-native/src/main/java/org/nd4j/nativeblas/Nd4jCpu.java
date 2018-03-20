@@ -6963,6 +6963,9 @@ public static class NativeOps extends org.nd4j.nativeblas.NativeOps {
         *  dimensions - array of dimensions to calculate sum over
         *  keepDims - if true then put unities in place of reduced dimensions
         */
+        public native FloatNDArray sum(@StdVector IntPointer dimensions);
+        public native FloatNDArray sum(@StdVector IntBuffer dimensions);
+        public native FloatNDArray sum(@StdVector int[] dimensions);        
 
 		/**
         *  method reduces array by excluding its shapes along dimensions present in given dimensions vector, result is stored in new array to be returned
@@ -8040,6 +8043,9 @@ public static class NativeOps extends org.nd4j.nativeblas.NativeOps {
         *  dimensions - array of dimensions to calculate sum over
         *  keepDims - if true then put unities in place of reduced dimensions
         */
+        public native HalfNDArray sum(@StdVector IntPointer dimensions);
+        public native HalfNDArray sum(@StdVector IntBuffer dimensions);
+        public native HalfNDArray sum(@StdVector int[] dimensions);        
 
 		/**
         *  method reduces array by excluding its shapes along dimensions present in given dimensions vector, result is stored in new array to be returned
@@ -9117,6 +9123,9 @@ public static class NativeOps extends org.nd4j.nativeblas.NativeOps {
         *  dimensions - array of dimensions to calculate sum over
         *  keepDims - if true then put unities in place of reduced dimensions
         */
+        public native DoubleNDArray sum(@StdVector IntPointer dimensions);
+        public native DoubleNDArray sum(@StdVector IntBuffer dimensions);
+        public native DoubleNDArray sum(@StdVector int[] dimensions);        
 
 		/**
         *  method reduces array by excluding its shapes along dimensions present in given dimensions vector, result is stored in new array to be returned
@@ -9995,7 +10004,7 @@ public static class NativeOps extends org.nd4j.nativeblas.NativeOps {
 // still the definition of inline function must be in header file
 
 
-
+//////////////////////////////////////////////////////////////////////////
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -10289,9 +10298,16 @@ public static class NativeOps extends org.nd4j.nativeblas.NativeOps {
         public static native FloatNDArray tensorDot(@Const FloatNDArray A, @Const FloatNDArray B, @StdVector IntBuffer axesA, @StdVector IntBuffer axesB);
         public static native FloatNDArray tensorDot(@Const FloatNDArray A, @Const FloatNDArray B, @StdVector int[] axesA, @StdVector int[] axesB);
 
-        public static native void tensorDot(@Const FloatNDArray a, @Const FloatNDArray b, FloatNDArray c, @StdVector IntPointer axesA, @StdVector IntPointer axesB);
-        public static native void tensorDot(@Const FloatNDArray a, @Const FloatNDArray b, FloatNDArray c, @StdVector IntBuffer axesA, @StdVector IntBuffer axesB);
-        public static native void tensorDot(@Const FloatNDArray a, @Const FloatNDArray b, FloatNDArray c, @StdVector int[] axesA, @StdVector int[] axesB);
+        public static native void tensorDot(@Const FloatNDArray a, @Const FloatNDArray b, FloatNDArray c, @StdVector IntPointer axes_a, @StdVector IntPointer axes_b, @StdVector IntPointer permutForC/*={}*/);
+        public static native void tensorDot(@Const FloatNDArray a, @Const FloatNDArray b, FloatNDArray c, @StdVector IntPointer axes_a, @StdVector IntPointer axes_b);
+        public static native void tensorDot(@Const FloatNDArray a, @Const FloatNDArray b, FloatNDArray c, @StdVector IntBuffer axes_a, @StdVector IntBuffer axes_b, @StdVector IntBuffer permutForC/*={}*/);
+        public static native void tensorDot(@Const FloatNDArray a, @Const FloatNDArray b, FloatNDArray c, @StdVector IntBuffer axes_a, @StdVector IntBuffer axes_b);
+        public static native void tensorDot(@Const FloatNDArray a, @Const FloatNDArray b, FloatNDArray c, @StdVector int[] axes_a, @StdVector int[] axes_b, @StdVector int[] permutForC/*={}*/);
+        public static native void tensorDot(@Const FloatNDArray a, @Const FloatNDArray b, FloatNDArray c, @StdVector int[] axes_a, @StdVector int[] axes_b);
+
+// #ifndef __JAVACPP_HACK__
+
+// #endif
 
         public static native FloatNDArray linspace(float from, float to, @Cast("Nd4jIndex") long numElements);
         
@@ -10354,9 +10370,16 @@ public static class NativeOps extends org.nd4j.nativeblas.NativeOps {
         public static native HalfNDArray tensorDot(@Const HalfNDArray A, @Const HalfNDArray B, @StdVector IntBuffer axesA, @StdVector IntBuffer axesB);
         public static native HalfNDArray tensorDot(@Const HalfNDArray A, @Const HalfNDArray B, @StdVector int[] axesA, @StdVector int[] axesB);
 
-        public static native void tensorDot(@Const HalfNDArray a, @Const HalfNDArray b, HalfNDArray c, @StdVector IntPointer axesA, @StdVector IntPointer axesB);
-        public static native void tensorDot(@Const HalfNDArray a, @Const HalfNDArray b, HalfNDArray c, @StdVector IntBuffer axesA, @StdVector IntBuffer axesB);
-        public static native void tensorDot(@Const HalfNDArray a, @Const HalfNDArray b, HalfNDArray c, @StdVector int[] axesA, @StdVector int[] axesB);
+        public static native void tensorDot(@Const HalfNDArray a, @Const HalfNDArray b, HalfNDArray c, @StdVector IntPointer axes_a, @StdVector IntPointer axes_b, @StdVector IntPointer permutForC/*={}*/);
+        public static native void tensorDot(@Const HalfNDArray a, @Const HalfNDArray b, HalfNDArray c, @StdVector IntPointer axes_a, @StdVector IntPointer axes_b);
+        public static native void tensorDot(@Const HalfNDArray a, @Const HalfNDArray b, HalfNDArray c, @StdVector IntBuffer axes_a, @StdVector IntBuffer axes_b, @StdVector IntBuffer permutForC/*={}*/);
+        public static native void tensorDot(@Const HalfNDArray a, @Const HalfNDArray b, HalfNDArray c, @StdVector IntBuffer axes_a, @StdVector IntBuffer axes_b);
+        public static native void tensorDot(@Const HalfNDArray a, @Const HalfNDArray b, HalfNDArray c, @StdVector int[] axes_a, @StdVector int[] axes_b, @StdVector int[] permutForC/*={}*/);
+        public static native void tensorDot(@Const HalfNDArray a, @Const HalfNDArray b, HalfNDArray c, @StdVector int[] axes_a, @StdVector int[] axes_b);
+
+// #ifndef __JAVACPP_HACK__
+
+// #endif
 
         public static native HalfNDArray linspace(@Cast("float16") short from, @Cast("float16") short to, @Cast("Nd4jIndex") long numElements);
         
@@ -10419,9 +10442,16 @@ public static class NativeOps extends org.nd4j.nativeblas.NativeOps {
         public static native DoubleNDArray tensorDot(@Const DoubleNDArray A, @Const DoubleNDArray B, @StdVector IntBuffer axesA, @StdVector IntBuffer axesB);
         public static native DoubleNDArray tensorDot(@Const DoubleNDArray A, @Const DoubleNDArray B, @StdVector int[] axesA, @StdVector int[] axesB);
 
-        public static native void tensorDot(@Const DoubleNDArray a, @Const DoubleNDArray b, DoubleNDArray c, @StdVector IntPointer axesA, @StdVector IntPointer axesB);
-        public static native void tensorDot(@Const DoubleNDArray a, @Const DoubleNDArray b, DoubleNDArray c, @StdVector IntBuffer axesA, @StdVector IntBuffer axesB);
-        public static native void tensorDot(@Const DoubleNDArray a, @Const DoubleNDArray b, DoubleNDArray c, @StdVector int[] axesA, @StdVector int[] axesB);
+        public static native void tensorDot(@Const DoubleNDArray a, @Const DoubleNDArray b, DoubleNDArray c, @StdVector IntPointer axes_a, @StdVector IntPointer axes_b, @StdVector IntPointer permutForC/*={}*/);
+        public static native void tensorDot(@Const DoubleNDArray a, @Const DoubleNDArray b, DoubleNDArray c, @StdVector IntPointer axes_a, @StdVector IntPointer axes_b);
+        public static native void tensorDot(@Const DoubleNDArray a, @Const DoubleNDArray b, DoubleNDArray c, @StdVector IntBuffer axes_a, @StdVector IntBuffer axes_b, @StdVector IntBuffer permutForC/*={}*/);
+        public static native void tensorDot(@Const DoubleNDArray a, @Const DoubleNDArray b, DoubleNDArray c, @StdVector IntBuffer axes_a, @StdVector IntBuffer axes_b);
+        public static native void tensorDot(@Const DoubleNDArray a, @Const DoubleNDArray b, DoubleNDArray c, @StdVector int[] axes_a, @StdVector int[] axes_b, @StdVector int[] permutForC/*={}*/);
+        public static native void tensorDot(@Const DoubleNDArray a, @Const DoubleNDArray b, DoubleNDArray c, @StdVector int[] axes_a, @StdVector int[] axes_b);
+
+// #ifndef __JAVACPP_HACK__
+
+// #endif
 
         public static native DoubleNDArray linspace(double from, double to, @Cast("Nd4jIndex") long numElements);
         
@@ -16272,15 +16302,14 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
 //                                       template struct ND4J_EXPORT __registratorSynonymDouble<NAME<double>>;
 //                                       template struct ND4J_EXPORT __registratorSynonymFloat<NAME<float>>;
 
-// #define NOT_EXCLUDED(NAME) defined(__ALL_OPS) || defined(__CLION_IDE__) || defined(NAME)
+// #define NOT_EXCLUDED(NAME) defined(LIBND4J_ALL_OPS) || defined(__CLION_IDE__) || defined(NAME)
 
 // #ifndef __JAVACPP_HACK__
 // #else
 // #define REGISTER(NAME)  
 // #endif
 
-// #define DECLARE_OP(NAME, NIN, NOUT, INPLACEABLE)   DECLARE_OP_UNIQ(__COUNTER__, NAME, NIN, NOUT, INPLACEABLE)
-// #define DECLARE_OP_UNIQ(CTR, NAME, NIN, NOUT, INPLACEABLE)   template <typename T>
+// #define DECLARE_OP(NAME, NIN, NOUT, INPLACEABLE)   template <typename T>
 //                                                 class NAME: public nd4j::ops::DeclarableOp<T> {
 //                                                 public:
 //                                                     NAME();
@@ -16288,6 +16317,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
 //                                                 protected:
 //                                                     Nd4jStatus validateAndExecute(nd4j::graph::Context<T>& block);
 //                                                 };
+//                                                 REGISTER(NAME)
 
 // #define DECLARE_BOOLEAN_OP(NAME, NIN, SCALAR)   template <typename T>
 //                                                 class NAME: public nd4j::ops::BooleanOp<T> {
@@ -17703,7 +17733,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * This is Sigmoid activation function implementation
          * Math is: 1 / 1 + exp(-x)
          */
-//         #if NOT_EXCLUDED(__sigmoid)
+//         #if NOT_EXCLUDED(OP_sigmoid)
         @Name("nd4j::ops::sigmoid<float>") public static class float_sigmoid extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -17800,7 +17830,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * This is Softsign activation function implementation
          * Math is: x / 1 + abs(x)
          */
-//         #if NOT_EXCLUDED(__softsign)
+//         #if NOT_EXCLUDED(OP_softsign)
         @Name("nd4j::ops::softsign<float>") public static class float_softsign extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -17896,7 +17926,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         /**
          * This is Tanh activation function implementation
          */
-//         #if NOT_EXCLUDED(__tanh)
+//         #if NOT_EXCLUDED(OP_tanh)
         @Name("nd4j::ops::tanh<float>") public static class float_tanh extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -17993,7 +18023,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * This is Softplus activation function implementation
          * Math is: log(1 + exp(x))
          */
-//         #if NOT_EXCLUDED(__softplus)
+//         #if NOT_EXCLUDED(OP_softplus)
         @Name("nd4j::ops::softplus<float>") public static class float_softplus extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -18089,7 +18119,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         /**
          * This is RELU activation function implementation
          */
-//         #if NOT_EXCLUDED(__relu)
+//         #if NOT_EXCLUDED(OP_relu)
         @Name("nd4j::ops::relu<float>") public static class float_relu extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -18185,7 +18215,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         /**
          * This is SELU activation function implementation
          */
-//         #if NOT_EXCLUDED(__selu)
+//         #if NOT_EXCLUDED(OP_selu)
         @Name("nd4j::ops::selu<float>") public static class float_selu extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -18282,7 +18312,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * This is Leaky RELU activation function.
          * Math is: x < 0 ?  alpha * x : x;
          */
-//         #if NOT_EXCLUDED(__lrelu)
+//         #if NOT_EXCLUDED(OP_lrelu)
         @Name("nd4j::ops::lrelu<float>") public static class float_lrelu extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -18379,7 +18409,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * This op is ELU activation function.
          * Math is: x >= 0 ? x : exp(x) - 1;
          */
-//         #if NOT_EXCLUDED(__elu)
+//         #if NOT_EXCLUDED(OP_elu)
         @Name("nd4j::ops::elu<float>") public static class float_elu extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -18476,7 +18506,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * This is Cube activation function.
          * Math is: x^3
          */
-//         #if NOT_EXCLUDED(__cube)
+//         #if NOT_EXCLUDED(OP_cube)
         @Name("nd4j::ops::cube<float>") public static class float_cube extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -18573,7 +18603,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * This is RectifiedTanh activation function.
          * Math is: max(0, tanh(x))
          */
-//         #if NOT_EXCLUDED(__rectifiedtanh)
+//         #if NOT_EXCLUDED(OP_rectifiedtanh)
         @Name("nd4j::ops::rectifiedtanh<float>") public static class float_rectifiedtanh extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -18669,7 +18699,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         /**
          * This is RationalTanh activation function.
          */
-//         #if NOT_EXCLUDED(__rationaltanh)
+//         #if NOT_EXCLUDED(OP_rationaltanh)
         @Name("nd4j::ops::rationaltanh<float>") public static class float_rationaltanh extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -18766,7 +18796,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * This is HardTanh activation function.
          * Math is: x < -1.0 ? -1.0 : x > 1.0 ? 1.0 : x;
          */
-//         #if NOT_EXCLUDED(__hardtanh)
+//         #if NOT_EXCLUDED(OP_hardtanh)
         @Name("nd4j::ops::hardtanh<float>") public static class float_hardtanh extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -18863,7 +18893,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * This is HardSigmoid activation function.
          * Math is: min(1, max(0, 0.2 * x + 0.5))
          */
-//         #if NOT_EXCLUDED(__hardsigmoid)
+//         #if NOT_EXCLUDED(OP_hardsigmoid)
         @Name("nd4j::ops::hardsigmoid<float>") public static class float_hardsigmoid extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -18959,7 +18989,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         /**
          * This is Indentity operation. It passes signal umodified in both directions.
          */
-//         #if NOT_EXCLUDED(__identity)
+//         #if NOT_EXCLUDED(OP_identity)
         @Name("nd4j::ops::identity<float>") public static class float_identity extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -18970,7 +19000,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_identity position(long position) {
                 return (float_identity)super.position(position);
             }
-         
+        
                                                     public float_identity() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -18985,7 +19015,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_identity position(long position) {
                 return (half_identity)super.position(position);
             }
-         
+        
                                                     public half_identity() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -19000,7 +19030,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_identity position(long position) {
                 return (double_identity)super.position(position);
             }
-         
+        
                                                     public double_identity() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -19015,7 +19045,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_identity_bp position(long position) {
                 return (float_identity_bp)super.position(position);
             }
-         
+        
                                                     public float_identity_bp() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -19030,7 +19060,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_identity_bp position(long position) {
                 return (half_identity_bp)super.position(position);
             }
-         
+        
                                                     public half_identity_bp() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -19045,7 +19075,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_identity_bp position(long position) {
                 return (double_identity_bp)super.position(position);
             }
-         
+        
                                                     public double_identity_bp() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -19058,7 +19088,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * PLEASE NOTE: Concatenation will double amount of features available in input
          */
-//         #if NOT_EXCLUDED(__crelu)
+//         #if NOT_EXCLUDED(OP_crelu)
         @Name("nd4j::ops::crelu<float>") public static class float_crelu extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -19154,7 +19184,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         /**
          * This is RELU6 activation function implementation
          */
-//         #if NOT_EXCLUDED(__relu6)
+//         #if NOT_EXCLUDED(OP_relu6)
         @Name("nd4j::ops::relu6<float>") public static class float_relu6 extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -19268,7 +19298,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * Returns true if x < y
          */
-//         #if NOT_EXCLUDED(__lt_scalar)
+//         #if NOT_EXCLUDED(OP_lt_scalar)
         @Name("nd4j::ops::lt_scalar<float>") public static class float_lt_scalar extends FloatBooleanOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -19319,7 +19349,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * Returns true if x > y
          */
-//         #if NOT_EXCLUDED(__gt_scalar)
+//         #if NOT_EXCLUDED(OP_gt_scalar)
         @Name("nd4j::ops::gt_scalar<float>") public static class float_gt_scalar extends FloatBooleanOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -19370,7 +19400,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * Returns true if x <= y
          */
-//         #if NOT_EXCLUDED(__lte_scalar)
+//         #if NOT_EXCLUDED(OP_lte_scalar)
         @Name("nd4j::ops::lte_scalar<float>") public static class float_lte_scalar extends FloatBooleanOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -19421,7 +19451,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * Returns true if x >= y
          */
-//         #if NOT_EXCLUDED(__gte_scalar)
+//         #if NOT_EXCLUDED(OP_gte_scalar)
         @Name("nd4j::ops::gte_scalar<float>") public static class float_gte_scalar extends FloatBooleanOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -19472,7 +19502,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * Returns true if both operands are equal.
          */
-//         #if NOT_EXCLUDED(__eq_scalar)
+//         #if NOT_EXCLUDED(OP_eq_scalar)
         @Name("nd4j::ops::eq_scalar<float>") public static class float_eq_scalar extends FloatBooleanOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -19523,7 +19553,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * Returns true if x != y
          */
-//         #if NOT_EXCLUDED(__neq_scalar)
+//         #if NOT_EXCLUDED(OP_neq_scalar)
         @Name("nd4j::ops::neq_scalar<float>") public static class float_neq_scalar extends FloatBooleanOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -19573,7 +19603,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * Math is: _x == _y ? (T) 1.0f : (T) 0.0f;
          * 
          */
-//         #if NOT_EXCLUDED(__equals)
+//         #if NOT_EXCLUDED(OP_equals)
         @Name("nd4j::ops::equals<float>") public static class float_equals extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -19584,7 +19614,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_equals position(long position) {
                 return (float_equals)super.position(position);
             }
-         
+        
                                                     public float_equals() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -19599,7 +19629,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_equals position(long position) {
                 return (half_equals)super.position(position);
             }
-         
+        
                                                     public half_equals() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -19614,7 +19644,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_equals position(long position) {
                 return (double_equals)super.position(position);
             }
-         
+        
                                                     public double_equals() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -19625,7 +19655,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * This op takes 2 equally shaped arrays as input, and provides binary matrix as output.
          * Math is: _x != _y ? (T) 1.0f : (T) 0.0f;
          */
-//         #if NOT_EXCLUDED(__not_equals)
+//         #if NOT_EXCLUDED(OP_not_equals)
         @Name("nd4j::ops::not_equals<float>") public static class float_not_equals extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -19636,7 +19666,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_not_equals position(long position) {
                 return (float_not_equals)super.position(position);
             }
-         
+        
                                                     public float_not_equals() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -19651,7 +19681,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_not_equals position(long position) {
                 return (half_not_equals)super.position(position);
             }
-         
+        
                                                     public half_not_equals() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -19666,7 +19696,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_not_equals position(long position) {
                 return (double_not_equals)super.position(position);
             }
-         
+        
                                                     public double_not_equals() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -19677,7 +19707,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * This op takes 2 equally shaped arrays as input, and provides binary matrix as output.
          * Math is: _x <= _y ? (T) 1.0f : (T) 0.0f;
          */
-//         #if NOT_EXCLUDED(__less_equal)
+//         #if NOT_EXCLUDED(OP_less_equal)
         @Name("nd4j::ops::less_equal<float>") public static class float_less_equal extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -19688,7 +19718,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_less_equal position(long position) {
                 return (float_less_equal)super.position(position);
             }
-         
+        
                                                     public float_less_equal() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -19703,7 +19733,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_less_equal position(long position) {
                 return (half_less_equal)super.position(position);
             }
-         
+        
                                                     public half_less_equal() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -19718,7 +19748,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_less_equal position(long position) {
                 return (double_less_equal)super.position(position);
             }
-         
+        
                                                     public double_less_equal() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -19729,7 +19759,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * This op takes 2 equally shaped arrays as input, and provides binary matrix as output.
          * Math is: _x >= _y ? (T) 1.0f : (T) 0.0f;
          */
-//         #if NOT_EXCLUDED(__greater_equal)
+//         #if NOT_EXCLUDED(OP_greater_equal)
         @Name("nd4j::ops::greater_equal<float>") public static class float_greater_equal extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -19740,7 +19770,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_greater_equal position(long position) {
                 return (float_greater_equal)super.position(position);
             }
-         
+        
                                                     public float_greater_equal() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -19755,7 +19785,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_greater_equal position(long position) {
                 return (half_greater_equal)super.position(position);
             }
-         
+        
                                                     public half_greater_equal() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -19770,7 +19800,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_greater_equal position(long position) {
                 return (double_greater_equal)super.position(position);
             }
-         
+        
                                                     public double_greater_equal() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -19781,7 +19811,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * This op takes 2 equally shaped arrays as input, and provides binary matrix as output.
          * Math is: _x < _y ? (T) 1.0f : (T) 0.0f;
          */
-//         #if NOT_EXCLUDED(__less)
+//         #if NOT_EXCLUDED(OP_less)
         @Name("nd4j::ops::less<float>") public static class float_less extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -19792,7 +19822,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_less position(long position) {
                 return (float_less)super.position(position);
             }
-         
+        
                                                     public float_less() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -19807,7 +19837,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_less position(long position) {
                 return (half_less)super.position(position);
             }
-         
+        
                                                     public half_less() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -19822,7 +19852,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_less position(long position) {
                 return (double_less)super.position(position);
             }
-         
+        
                                                     public double_less() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -19833,7 +19863,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * This op takes 2 equally shaped arrays as input, and provides binary matrix as output.
          * Math is: _x > _y ? (T) 1.0f : (T) 0.0f;
          */
-//         #if NOT_EXCLUDED(__greater)
+//         #if NOT_EXCLUDED(OP_greater)
         @Name("nd4j::ops::greater<float>") public static class float_greater extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -19844,7 +19874,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_greater position(long position) {
                 return (float_greater)super.position(position);
             }
-         
+        
                                                     public float_greater() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -19859,7 +19889,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_greater position(long position) {
                 return (half_greater)super.position(position);
             }
-         
+        
                                                     public half_greater() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -19874,7 +19904,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_greater position(long position) {
                 return (double_greater)super.position(position);
             }
-         
+        
                                                     public double_greater() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -19885,7 +19915,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * This op takes 2 n-dimensional arrays as input, and return 
          * array of the same shape, with elements, either from x or y, depending on the condition.
          */
-//         #if NOT_EXCLUDED(__where)
+//         #if NOT_EXCLUDED(OP_where)
         @Name("nd4j::ops::Where<float>") public static class float_Where extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -19933,7 +19963,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__where_np)
+//         #if NOT_EXCLUDED(OP_where_np)
         @Name("nd4j::ops::where_np<float>") public static class float_where_np extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -19985,7 +20015,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * This op takes 2 n-dimensional arrays as input, and return
          * array of the same shape, with elements, either from x or y, depending on the condition.
          */
-//         #if NOT_EXCLUDED(__select)
+//         #if NOT_EXCLUDED(OP_select)
         @Name("nd4j::ops::select<float>") public static class float_select extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -20046,7 +20076,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          *  > 2. Libnd4j already implements a number of pre defined conditions.
          * \tparam T
          */
-//         #if NOT_EXCLUDED(__choose)
+//         #if NOT_EXCLUDED(OP_choose)
         @Name("nd4j::ops::choose<float>") public static class float_choose extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -20097,7 +20127,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         /**
         * This op takes 1 n-dimensional array as input, and returns true if for every adjacent pair we have x[i] <= x[i+1].
          */
-//         #if NOT_EXCLUDED(__is_non_decreasing)
+//         #if NOT_EXCLUDED(OP_is_non_decreasing)
         @Name("nd4j::ops::is_non_decreasing<float>") public static class float_is_non_decreasing extends FloatBooleanOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -20145,7 +20175,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         /**
          * This op takes 1 n-dimensional array as input, and returns true if for every adjacent pair we have x[i] < x[i+1].
          */
-//         #if NOT_EXCLUDED(__is_strictly_increasing)
+//         #if NOT_EXCLUDED(OP_is_strictly_increasing)
         @Name("nd4j::ops::is_strictly_increasing<float>") public static class float_is_strictly_increasing extends FloatBooleanOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -20193,7 +20223,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         /**
          * This op takes 1 n-dimensional array as input, and returns true if input is a numeric array.
          */
-//         #if NOT_EXCLUDED(__is_numeric_tensor)
+//         #if NOT_EXCLUDED(OP_is_numeric_tensor)
         @Name("nd4j::ops::is_numeric_tensor<float>") public static class float_is_numeric_tensor extends FloatBooleanOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -20263,7 +20293,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * This operation returns Z = Max(X, Y)
          */
-//         #if NOT_EXCLUDED(__maximum)
+//         #if NOT_EXCLUDED(OP_maximum)
         @Name("nd4j::ops::maximum<float>") public static class float_maximum extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -20365,7 +20395,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * This operation returns Z = Min(X, Y)
          */
-//         #if NOT_EXCLUDED(__minimum)
+//         #if NOT_EXCLUDED(OP_minimum)
         @Name("nd4j::ops::minimum<float>") public static class float_minimum extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -20467,7 +20497,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * This operation returns Z = Add(X, Y)
          */
-//         #if NOT_EXCLUDED(__add)
+//         #if NOT_EXCLUDED(OP_add)
         @Name("nd4j::ops::add<float>") public static class float_add extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -20569,7 +20599,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * This operation returns Z = Subtract(X, Y)
          */
-//         #if NOT_EXCLUDED(__subtract)
+//         #if NOT_EXCLUDED(OP_subtract)
         @Name("nd4j::ops::subtract<float>") public static class float_subtract extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -20671,7 +20701,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * This operation returns Z = Subtract(Y, X)
          */
-//         #if NOT_EXCLUDED(__reversesubtract)
+//         #if NOT_EXCLUDED(OP_reversesubtract)
         @Name("nd4j::ops::reversesubtract<float>") public static class float_reversesubtract extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -20773,7 +20803,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * This operation returns Z = ReverseMod(X, Y) == Mod(Y, X)
          */
-//         #if NOT_EXCLUDED(__reversemod)
+//         #if NOT_EXCLUDED(OP_reversemod)
         @Name("nd4j::ops::reversemod<float>") public static class float_reversemod extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -20876,7 +20906,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * This operation returns Z = Subtract(X, Y) * Subtract(X, Y)
          */
-//         #if NOT_EXCLUDED(__squaredsubtract)
+//         #if NOT_EXCLUDED(OP_squaredsubtract)
         @Name("nd4j::ops::squaredsubtract<float>") public static class float_squaredsubtract extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -20978,7 +21008,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * This operation returns Z = Multiply(X, Y)
          */
-//         #if NOT_EXCLUDED(__multiply)
+//         #if NOT_EXCLUDED(OP_multiply)
         @Name("nd4j::ops::multiply<float>") public static class float_multiply extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -21080,7 +21110,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * This operation returns Z = Divide(X, Y)
          */
-//         #if NOT_EXCLUDED(__divide)
+//         #if NOT_EXCLUDED(OP_divide)
         @Name("nd4j::ops::divide<float>") public static class float_divide extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -21182,7 +21212,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * This operation returns Z = Divide(Y, x)
          */
-//         #if NOT_EXCLUDED(__reversedivide)
+//         #if NOT_EXCLUDED(OP_reversedivide)
         @Name("nd4j::ops::reversedivide<float>") public static class float_reversedivide extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -21284,7 +21314,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * This operation returns Z = FloorMod(X, Y)
          */
-//         #if NOT_EXCLUDED(__floormod)
+//         #if NOT_EXCLUDED(OP_floormod)
         @Name("nd4j::ops::floormod<float>") public static class float_floormod extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -21377,7 +21407,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__mod)
+//         #if NOT_EXCLUDED(OP_mod)
         @Name("nd4j::ops::mod<float>") public static class float_mod extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -21479,7 +21509,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * This operation returns Z = FloorDiv(X, Y)
          */
-//         #if NOT_EXCLUDED(__floordiv)
+//         #if NOT_EXCLUDED(OP_floordiv)
         @Name("nd4j::ops::floordiv<float>") public static class float_floordiv extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -21581,7 +21611,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * This operation returns Z = Divide(X, Y)
          */
-//         #if NOT_EXCLUDED(__realdiv)
+//         #if NOT_EXCLUDED(OP_realdiv)
         @Name("nd4j::ops::realdiv<float>") public static class float_realdiv extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -21683,7 +21713,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * This operation returns Z = Assign(X, Y)
          */
-//         #if NOT_EXCLUDED(__assign)
+//         #if NOT_EXCLUDED(OP_assign)
         @Name("nd4j::ops::assign<float>") public static class float_assign extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -21776,7 +21806,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__meshgrid)
+//         #if NOT_EXCLUDED(OP_meshgrid)
         @Name("nd4j::ops::meshgrid<float>") public static class float_meshgrid extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -21851,7 +21881,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 1: stride
          * 2: padding
          */
-//         #if NOT_EXCLUDED(__conv1d)
+//         #if NOT_EXCLUDED(OP_conv1d)
         @Name("nd4j::ops::conv1d<float>") public static class float_conv1d extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -21963,7 +21993,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 8: same mode:   1 true, 0 false
          * 9: data format: 1 NHWC, 0 NCHW
          */
-//         #if NOT_EXCLUDED(__conv2d)
+//         #if NOT_EXCLUDED(OP_conv2d)
         @Name("nd4j::ops::conv2d<float>") public static class float_conv2d extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -22064,7 +22094,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * weightsPointwise: optional, 4D array
          * bias: optional, vector
          */
-//         #if NOT_EXCLUDED(__sconv2d)
+//         #if NOT_EXCLUDED(OP_sconv2d)
         @Name("nd4j::ops::sconv2d<float>") public static class float_sconv2d extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -22171,7 +22201,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 7: dilation width
          * 8: same mode: 0 false, 1 true
          */
-//         #if NOT_EXCLUDED(__deconv2d)
+//         #if NOT_EXCLUDED(OP_deconv2d)
         @Name("nd4j::ops::deconv2d<float>") public static class float_deconv2d extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -22279,7 +22309,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 7: dilation width
          * 8: same mode: 0 false, 1 true
          */
-//         #if NOT_EXCLUDED(__maxpool2d)
+//         #if NOT_EXCLUDED(OP_maxpool2d)
         @Name("nd4j::ops::maxpool2d<float>") public static class float_maxpool2d extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -22387,7 +22417,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 7: dilation width
          * 8: same mode: 0 false, 1 true
          */
-//         #if NOT_EXCLUDED(__avgpool2d)
+//         #if NOT_EXCLUDED(OP_avgpool2d)
         @Name("nd4j::ops::avgpool2d<float>") public static class float_avgpool2d extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -22496,7 +22526,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 8: same mode: 0 false, 1 true
          * 9: p for p-norm
          */
-//         #if NOT_EXCLUDED(__pnormpool2d)
+//         #if NOT_EXCLUDED(OP_pnormpool2d)
         @Name("nd4j::ops::pnormpool2d<float>") public static class float_pnormpool2d extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -22589,7 +22619,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__maxpool3d)
+//         #if NOT_EXCLUDED(OP_maxpool3d)
         @Name("nd4j::ops::maxpool3d<float>") public static class float_maxpool3d extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -22682,7 +22712,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__avgpool3d)
+//         #if NOT_EXCLUDED(OP_avgpool3d)
         @Name("nd4j::ops::avgpool3d<float>") public static class float_avgpool3d extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -22775,7 +22805,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__fullconv3d)
+//         #if NOT_EXCLUDED(OP_fullconv3d)
         @Name("nd4j::ops::fullconv3d<float>") public static class float_fullconv3d extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -22917,7 +22947,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          *  Universal pooling op, combines max/avg/pnorm pooling.
          *  Shouldn't be used directly, consider using corresponding operations instead.
          */
-//         #if NOT_EXCLUDED(__pooling2d)
+//         #if NOT_EXCLUDED(OP_pooling2d)
         @Name("nd4j::ops::pooling2d<float>") public static class float_pooling2d extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -22980,7 +23010,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 7: dilation width
          * 8: isSameMode
          */
-//         #if NOT_EXCLUDED(__im2col)
+//         #if NOT_EXCLUDED(OP_im2col)
         @Name("nd4j::ops::im2col<float>") public static class float_im2col extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -23042,7 +23072,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 6: dilation height
          * 7: dilation width
          */
-//         #if NOT_EXCLUDED(__col2im)
+//         #if NOT_EXCLUDED(OP_col2im)
         @Name("nd4j::ops::col2im<float>") public static class float_col2im extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -23096,7 +23126,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * IArgs map:
          * IArgs[0] - scale factor
          */
-//         #if NOT_EXCLUDED(__upsampling2d)
+//         #if NOT_EXCLUDED(OP_upsampling2d)
         @Name("nd4j::ops::upsampling2d<float>") public static class float_upsampling2d extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -23200,7 +23230,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 5: padding W
          * 6: padding H
          */
-//         #if NOT_EXCLUDED(__conv3d)
+//         #if NOT_EXCLUDED(OP_conv3d)
         @Name("nd4j::ops::conv3d<float>") public static class float_conv3d extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -23300,7 +23330,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * Int args:
          * 0: axis
          */
-//         #if NOT_EXCLUDED(__ismax)
+//         #if NOT_EXCLUDED(OP_ismax)
         @Name("nd4j::ops::ismax<float>") public static class float_ismax extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -23354,7 +23384,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * Int args:
          * 0: isSameMode
          */
-//         #if NOT_EXCLUDED(__dilation2d)
+//         #if NOT_EXCLUDED(OP_dilation2d)
         @Name("nd4j::ops::dilation2d<float>") public static class float_dilation2d extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -23402,7 +23432,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__conv3dnew)
+//         #if NOT_EXCLUDED(OP_conv3dnew)
         @Name("nd4j::ops::conv3dnew<float>") public static class float_conv3dnew extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -23495,7 +23525,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__avgpool3dnew)
+//         #if NOT_EXCLUDED(OP_avgpool3dnew)
         @Name("nd4j::ops::avgpool3dnew<float>") public static class float_avgpool3dnew extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -23588,7 +23618,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__maxpool3dnew)
+//         #if NOT_EXCLUDED(OP_maxpool3dnew)
         @Name("nd4j::ops::maxpool3dnew<float>") public static class float_maxpool3dnew extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -23692,7 +23722,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * Int params:
          *   9 int with 2x4 vectors and 1 bool value
          */
-//         #if NOT_EXCLUDED(__max_pool_woth_argmax)
+//         #if NOT_EXCLUDED(OP_max_pool_woth_argmax)
         @Name("nd4j::ops::max_pool_with_argmax<float>") public static class float_max_pool_with_argmax extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -23741,7 +23771,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
 //         #endif
 
 
-//         #if NOT_EXCLUDED(__depthwise_conv2d)
+//         #if NOT_EXCLUDED(OP_depthwise_conv2d)
         @Name("nd4j::ops::depthwise_conv2d<float>") public static class float_depthwise_conv2d extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -23855,7 +23885,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * This operations puts given NDArray into (optionally) given NDArrayList. 
          * If no NDArrayList was provided - new one will be created
          */
-//         #if NOT_EXCLUDED(__write_list)
+//         #if NOT_EXCLUDED(OP_write_list)
         @Name("nd4j::ops::write_list<float>") public static class float_write_list extends FloatDeclarableListOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -23903,7 +23933,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         /**
          * This operation concatenates given NDArrayList, and returns NDArray as result
          */
-//         #if NOT_EXCLUDED(__stack_list)
+//         #if NOT_EXCLUDED(OP_stack_list)
         @Name("nd4j::ops::stack_list<float>") public static class float_stack_list extends FloatDeclarableListOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -23957,7 +23987,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * Int args:
          * optional, index
          */
-//         #if NOT_EXCLUDED(__read_list)
+//         #if NOT_EXCLUDED(OP_read_list)
         @Name("nd4j::ops::read_list<float>") public static class float_read_list extends FloatDeclarableListOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -24011,7 +24041,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * Int args:
          * optional, indices
          */
-//         #if NOT_EXCLUDED(__pick_list)
+//         #if NOT_EXCLUDED(OP_pick_list)
         @Name("nd4j::ops::pick_list<float>") public static class float_pick_list extends FloatDeclarableListOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -24061,7 +24091,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * Expected arguments:
          * x: list
          */
-//         #if NOT_EXCLUDED(__size_list)
+//         #if NOT_EXCLUDED(OP_size_list)
         @Name("nd4j::ops::size_list<float>") public static class float_size_list extends FloatDeclarableListOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -24109,7 +24139,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         /**
          * This operation creates new empty NDArrayList
          */
-//         #if NOT_EXCLUDED(__create_list)
+//         #if NOT_EXCLUDED(OP_create_list)
         @Name("nd4j::ops::create_list<float>") public static class float_create_list extends FloatDeclarableListOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -24157,7 +24187,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         /**
          * This operation unpacks given NDArray into specified NDArrayList wrt specified indices
          */
-//         #if NOT_EXCLUDED(__scatter_list)
+//         #if NOT_EXCLUDED(OP_scatter_list)
         @Name("nd4j::ops::scatter_list<float>") public static class float_scatter_list extends FloatDeclarableListOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -24209,7 +24239,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * array: array to be split
          * sizes: vector with sizes for each chunk
          */
-//         #if NOT_EXCLUDED(__split_list)
+//         #if NOT_EXCLUDED(OP_split_list)
         @Name("nd4j::ops::split_list<float>") public static class float_split_list extends FloatDeclarableListOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -24260,7 +24290,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * x: non-empty list
          * indices: vector with indices for gather operation
          */
-//         #if NOT_EXCLUDED(__gather_list)
+//         #if NOT_EXCLUDED(OP_gather_list)
         @Name("nd4j::ops::gather_list<float>") public static class float_gather_list extends FloatDeclarableListOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -24308,7 +24338,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         /**
          * This operation clones given NDArrayList
          */
-//         #if NOT_EXCLUDED(__clone_list)
+//         #if NOT_EXCLUDED(OP_clone_list)
         @Name("nd4j::ops::clone_list<float>") public static class float_clone_list extends FloatDeclarableListOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -24356,7 +24386,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         /**
          * This operation unstacks given NDArray into NDArrayList
          */
-//         #if NOT_EXCLUDED(__unstack_list)
+//         #if NOT_EXCLUDED(OP_unstack_list)
         @Name("nd4j::ops::unstack_list<float>") public static class float_unstack_list extends FloatDeclarableListOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -24431,7 +24461,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
        *    0: 3d tensor of cell output [bS x K x N]
        *    1: 3d tensor of cell state [bS x K x N]
        */             
-//         #if NOT_EXCLUDED(__sru)
+//         #if NOT_EXCLUDED(OP_sru)
         @Name("nd4j::ops::sru<float>") public static class float_sru extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -24494,7 +24524,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
        *    0: 3d tensor of cell output [bS x K x N]
        *    1: 3d tensor of cell state [bS x K x N]
        */              
-//         #if NOT_EXCLUDED(__sru_logic)
+//         #if NOT_EXCLUDED(OP_sru_logic)
         @Name("nd4j::ops::sru_logic<float>") public static class float_sru_logic extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -24558,7 +24588,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
        *    0: 3d tensor of cell output [N x bS x 2K]
        *    1: 3d tensor of cell state [N x bS x 2K]
        */             
-//         #if NOT_EXCLUDED(__sru_bi)
+//         #if NOT_EXCLUDED(OP_sru_bi)
         @Name("nd4j::ops::sru_bi<float>") public static class float_sru_bi extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -24627,7 +24657,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
        *    2: 2d, row of biases gradients [1 x 2K]
        *    3: 2d, tensor of state gradients [bS x K]
        */         
-//         #if NOT_EXCLUDED(__sru)
+//         #if NOT_EXCLUDED(OP_sru)
         @Name("nd4j::ops::sru_bp<float>") public static class float_sru_bp extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -24696,7 +24726,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
        *    2: 2d, row of biases gradients [1 x 2K]
        *    3: 2d, tensor of state gradients [bS x K]
        */                  
-//         #if NOT_EXCLUDED(__sru_logic)
+//         #if NOT_EXCLUDED(OP_sru_logic)
         @Name("nd4j::ops::sru_bp_logic<float>") public static class float_sru_bp_logic extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -24765,7 +24795,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
        *    2: 2d, row of biases gradients [1 x 4K]
        *    3: 2d, tensor of state gradients [bS x 2K]
        */                  
-//         #if NOT_EXCLUDED(__sru_bi)
+//         #if NOT_EXCLUDED(OP_sru_bi)
         @Name("nd4j::ops::sru_bi_bp<float>") public static class float_sru_bi_bp extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -24845,7 +24875,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
        *    0: current cell output [batchSize x numProj], that is at current time step t
        *    1: current cell state  [batchSize x numUnits], that is at current time step t
        */                  
-//         #if NOT_EXCLUDED(__lstmCell)
+//         #if NOT_EXCLUDED(OP_lstmCell)
         @Name("nd4j::ops::lstmCell<float>") public static class float_lstmCell extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -24908,7 +24938,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
        *    0: current cell output [batchSize x inSize], that is at current time step t
        *    1: current cell state  [batchSize x inSize], that is at current time step t
        */                  
-//         #if NOT_EXCLUDED(__sruCell)
+//         #if NOT_EXCLUDED(OP_sruCell)
         @Name("nd4j::ops::sruCell<float>") public static class float_sruCell extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -24973,7 +25003,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
        * Output arrays: 
        *    0: current cell output [batchSize x numUnits], that is at current time step t       
        */                  
-//         #if NOT_EXCLUDED(__gruCell)
+//         #if NOT_EXCLUDED(OP_gruCell)
         @Name("nd4j::ops::gruCell<float>") public static class float_gruCell extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -25049,7 +25079,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
        *    0: cell outputs [time x batchSize x numProj], that is per each time step
        *    1: cell states  [time x batchSize x numUnits], that is per each time step
        */                  
-//         #if NOT_EXCLUDED(__lstm)
+//         #if NOT_EXCLUDED(OP_lstm)
         @Name("nd4j::ops::lstm<float>") public static class float_lstm extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -25111,7 +25141,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
        * Output arrays: 
        *    0: cell outputs [time x batchSize x numUnits], that is per each time step    
        */                  
-//         #if NOT_EXCLUDED(__gru)
+//         #if NOT_EXCLUDED(OP_gru)
         @Name("nd4j::ops::gru<float>") public static class float_gru extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -25173,7 +25203,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
 // #define LIBND4J_HEADERS_TRANSFORMS_H
 
 // #include <ops/declarable/headers/common.h>
-//         #if NOT_EXCLUDED(__clipbyvalue)
+//         #if NOT_EXCLUDED(OP_clipbyvalue)
         @Name("nd4j::ops::clipbyvalue<float>") public static class float_clipbyvalue extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -25221,7 +25251,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__clipbynorm)
+//         #if NOT_EXCLUDED(OP_clipbynorm)
         @Name("nd4j::ops::clipbynorm<float>") public static class float_clipbynorm extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -25269,7 +25299,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__clipbyavgnorm)
+//         #if NOT_EXCLUDED(OP_clipbyavgnorm)
         @Name("nd4j::ops::clipbyavgnorm<float>") public static class float_clipbyavgnorm extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -25317,7 +25347,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__cumsum)
+//         #if NOT_EXCLUDED(OP_cumsum)
         @Name("nd4j::ops::cumsum<float>") public static class float_cumsum extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -25365,7 +25395,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__cumprod)
+//         #if NOT_EXCLUDED(OP_cumprod)
         @Name("nd4j::ops::cumprod<float>") public static class float_cumprod extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -25413,7 +25443,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__tile)
+//         #if NOT_EXCLUDED(OP_tile)
         @Name("nd4j::ops::tile<float>") public static class float_tile extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -25461,7 +25491,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__repeat)
+//         #if NOT_EXCLUDED(OP_repeat)
         @Name("nd4j::ops::repeat<float>") public static class float_repeat extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -25509,7 +25539,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 } 
 //         #endif
 
-//         #if NOT_EXCLUDED(__invert_permutation)
+//         #if NOT_EXCLUDED(OP_invert_permutation)
         @Name("nd4j::ops::invert_permutation<float>") public static class float_invert_permutation extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -25650,7 +25680,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
                                                                                 }
 
-//         #if NOT_EXCLUDED(__mergemax)
+//         #if NOT_EXCLUDED(OP_mergemax)
         @Name("nd4j::ops::mergemax<float>") public static class float_mergemax extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -25661,7 +25691,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_mergemax position(long position) {
                 return (float_mergemax)super.position(position);
             }
-         
+        
                                                     public float_mergemax() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -25676,7 +25706,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_mergemax position(long position) {
                 return (half_mergemax)super.position(position);
             }
-         
+        
                                                     public half_mergemax() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -25691,14 +25721,14 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_mergemax position(long position) {
                 return (double_mergemax)super.position(position);
             }
-         
+        
                                                     public double_mergemax() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__mergemaxindex)
+//         #if NOT_EXCLUDED(OP_mergemaxindex)
         @Name("nd4j::ops::mergemaxindex<float>") public static class float_mergemaxindex extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -25709,7 +25739,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_mergemaxindex position(long position) {
                 return (float_mergemaxindex)super.position(position);
             }
-         
+        
                                                     public float_mergemaxindex() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -25724,7 +25754,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_mergemaxindex position(long position) {
                 return (half_mergemaxindex)super.position(position);
             }
-         
+        
                                                     public half_mergemaxindex() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -25739,14 +25769,14 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_mergemaxindex position(long position) {
                 return (double_mergemaxindex)super.position(position);
             }
-         
+        
                                                     public double_mergemaxindex() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__mergeadd)
+//         #if NOT_EXCLUDED(OP_mergeadd)
         @Name("nd4j::ops::mergeadd<float>") public static class float_mergeadd extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -25757,7 +25787,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_mergeadd position(long position) {
                 return (float_mergeadd)super.position(position);
             }
-         
+        
                                                     public float_mergeadd() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -25772,7 +25802,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_mergeadd position(long position) {
                 return (half_mergeadd)super.position(position);
             }
-         
+        
                                                     public half_mergeadd() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -25787,14 +25817,14 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_mergeadd position(long position) {
                 return (double_mergeadd)super.position(position);
             }
-         
+        
                                                     public double_mergeadd() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__mergeavg)
+//         #if NOT_EXCLUDED(OP_mergeavg)
         @Name("nd4j::ops::mergeavg<float>") public static class float_mergeavg extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -25805,7 +25835,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_mergeavg position(long position) {
                 return (float_mergeavg)super.position(position);
             }
-         
+        
                                                     public float_mergeavg() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -25820,7 +25850,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_mergeavg position(long position) {
                 return (half_mergeavg)super.position(position);
             }
-         
+        
                                                     public half_mergeavg() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -25835,14 +25865,14 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_mergeavg position(long position) {
                 return (double_mergeavg)super.position(position);
             }
-         
+        
                                                     public double_mergeavg() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
                                                 }   
 //         #endif
 
-//         #if NOT_EXCLUDED(__scatter_update)
+//         #if NOT_EXCLUDED(OP_scatter_update)
         @Name("nd4j::ops::scatter_update<float>") public static class float_scatter_update extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -25890,7 +25920,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 } 
 //         #endif
 
-//         #if NOT_EXCLUDED(__Floor)
+//         #if NOT_EXCLUDED(OP_Floor)
         @Name("nd4j::ops::Floor<float>") public static class float_Floor extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -25901,7 +25931,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_Floor position(long position) {
                 return (float_Floor)super.position(position);
             }
-         
+        
                                                     public float_Floor() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -25916,7 +25946,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_Floor position(long position) {
                 return (half_Floor)super.position(position);
             }
-         
+        
                                                     public half_Floor() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -25931,14 +25961,14 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_Floor position(long position) {
                 return (double_Floor)super.position(position);
             }
-         
+        
                                                     public double_Floor() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__Log1p)
+//         #if NOT_EXCLUDED(OP_Log1p)
         @Name("nd4j::ops::Log1p<float>") public static class float_Log1p extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -25949,7 +25979,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_Log1p position(long position) {
                 return (float_Log1p)super.position(position);
             }
-         
+        
                                                     public float_Log1p() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -25964,7 +25994,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_Log1p position(long position) {
                 return (half_Log1p)super.position(position);
             }
-         
+        
                                                     public half_Log1p() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -25979,14 +26009,14 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_Log1p position(long position) {
                 return (double_Log1p)super.position(position);
             }
-         
+        
                                                     public double_Log1p() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__reverse)
+//         #if NOT_EXCLUDED(OP_reverse)
         @Name("nd4j::ops::reverse<float>") public static class float_reverse extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -26034,7 +26064,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__gather)
+//         #if NOT_EXCLUDED(OP_gather)
         @Name("nd4j::ops::gather<float>") public static class float_gather extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -26082,7 +26112,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__pad)
+//         #if NOT_EXCLUDED(OP_pad)
         @Name("nd4j::ops::pad<float>") public static class float_pad extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -26142,7 +26172,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * IArgs[2]       - optional, the number of columns in output inner-most 2D identity matrix, if this argument is not provided then it is taken to be equal to number of rows
          * IArgs[3,4,...] - optional, shape of batch, output matrix will have leading batch dimensions of this shape         
          */
-//         #if NOT_EXCLUDED(__eye)
+//         #if NOT_EXCLUDED(OP_eye)
         @Name("nd4j::ops::eye<float>") public static class float_eye extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -26190,7 +26220,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__gather_nd)
+//         #if NOT_EXCLUDED(OP_gather_nd)
         @Name("nd4j::ops::gather_nd<float>") public static class float_gather_nd extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -26238,7 +26268,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__reverse_sequence)
+//         #if NOT_EXCLUDED(OP_reverse_sequence)
         @Name("nd4j::ops::reverse_sequence<float>") public static class float_reverse_sequence extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -26286,7 +26316,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__trace)
+//         #if NOT_EXCLUDED(OP_trace)
         @Name("nd4j::ops::trace<float>") public static class float_trace extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -26334,7 +26364,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__random_shuffle)
+//         #if NOT_EXCLUDED(OP_random_shuffle)
         @Name("nd4j::ops::random_shuffle<float>") public static class float_random_shuffle extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -26345,7 +26375,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_random_shuffle position(long position) {
                 return (float_random_shuffle)super.position(position);
             }
-         
+        
                                                     public float_random_shuffle() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -26360,7 +26390,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_random_shuffle position(long position) {
                 return (half_random_shuffle)super.position(position);
             }
-         
+        
                                                     public half_random_shuffle() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -26375,7 +26405,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_random_shuffle position(long position) {
                 return (double_random_shuffle)super.position(position);
             }
-         
+        
                                                     public double_random_shuffle() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -26394,7 +26424,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * return a list of clipped tensors
          *  and global_norm as scalar tensor at the end
          */
-//         #if NOT_EXCLUDED(__clip_by_global_norm)
+//         #if NOT_EXCLUDED(OP_clip_by_global_norm)
         @Name("nd4j::ops::clip_by_global_norm<float>") public static class float_clip_by_global_norm extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -26465,7 +26495,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * Int args:
          * 0: optional axis
          */
-//         #if NOT_EXCLUDED(__argmax)
+//         #if NOT_EXCLUDED(OP_argmax)
         @Name("nd4j::ops::argmax<float>") public static class float_argmax extends FloatDeclarableReductionOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -26519,7 +26549,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * Int args:
          * 0: optional axis
          */
-//         #if NOT_EXCLUDED(__argmin)
+//         #if NOT_EXCLUDED(OP_argmin)
         @Name("nd4j::ops::argmin<float>") public static class float_argmin extends FloatDeclarableReductionOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -26584,7 +26614,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 0: norm mode
          * 1: p for p-norm
          */
-//         #if NOT_EXCLUDED(__norm)
+//         #if NOT_EXCLUDED(OP_norm)
         @Name("nd4j::ops::norm<float>") public static class float_norm extends FloatDeclarableReductionOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -26632,7 +26662,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         /**
          * Returns a batched matrix tensor with new batched diagonal values.
          */
-//         #if NOT_EXCLUDED(__matrix_set_diag)
+//         #if NOT_EXCLUDED(OP_matrix_set_diag)
         @Name("nd4j::ops::matrix_set_diag<float>") public static class float_matrix_set_diag extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -26696,7 +26726,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         *
         * Three input and one output arrays must have the same shape
         */
-//         #if NOT_EXCLUDED(__betainc)
+//         #if NOT_EXCLUDED(OP_betainc)
         @Name("nd4j::ops::betainc<float>") public static class float_betainc extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -26751,7 +26781,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 0: N-dimensional input
          * 1: bias vector
          */
-//         #if NOT_EXCLUDED(__biasadd)
+//         #if NOT_EXCLUDED(OP_biasadd)
         @Name("nd4j::ops::biasadd<float>") public static class float_biasadd extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -26762,7 +26792,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_biasadd position(long position) {
                 return (float_biasadd)super.position(position);
             }
-         
+        
                                                     public float_biasadd() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -26777,7 +26807,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_biasadd position(long position) {
                 return (half_biasadd)super.position(position);
             }
-         
+        
                                                     public half_biasadd() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -26792,7 +26822,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_biasadd position(long position) {
                 return (double_biasadd)super.position(position);
             }
-         
+        
                                                     public double_biasadd() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -26847,7 +26877,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         /**
          * Returns a diagonal tensor with a given diagonal values. Given a diagonal, this operation returns a tensor with the diagonal and everything else padded with zeros.
          */
-//         #if NOT_EXCLUDED(__diag)
+//         #if NOT_EXCLUDED(OP_diag)
         @Name("nd4j::ops::diag<float>") public static class float_diag extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -26898,7 +26928,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         /**
          * Returns a diagonal tensor with a given diagonal values. Given a diagonal, this operation returns a tensor with the diagonal and everything else padded with zeros.
          */
-//         #if NOT_EXCLUDED(__diag_part)
+//         #if NOT_EXCLUDED(OP_diag_part)
         @Name("nd4j::ops::diag_part<float>") public static class float_diag_part extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -26952,7 +26982,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 0: vector with original values
          * 1: vector with values to exclude
          */
-//         #if NOT_EXCLUDED(__listdiff)
+//         #if NOT_EXCLUDED(OP_listdiff)
         @Name("nd4j::ops::listdiff<float>") public static class float_listdiff extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -26963,7 +26993,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_listdiff position(long position) {
                 return (float_listdiff)super.position(position);
             }
-         
+        
                                                     public float_listdiff() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -26978,7 +27008,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_listdiff position(long position) {
                 return (half_listdiff)super.position(position);
             }
-         
+        
                                                     public half_listdiff() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -26993,7 +27023,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_listdiff position(long position) {
                 return (double_listdiff)super.position(position);
             }
-         
+        
                                                     public double_listdiff() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -27007,7 +27037,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * indices: either scalar, vector, or N-dimensional array
          * updates: N-dimensional array
          */
-//         #if NOT_EXCLUDED(__scatter_add)
+//         #if NOT_EXCLUDED(OP_scatter_add)
         @Name("nd4j::ops::scatter_add<float>") public static class float_scatter_add extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -27018,7 +27048,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_scatter_add position(long position) {
                 return (float_scatter_add)super.position(position);
             }
-         
+        
                                                     public float_scatter_add() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -27033,7 +27063,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_scatter_add position(long position) {
                 return (half_scatter_add)super.position(position);
             }
-         
+        
                                                     public half_scatter_add() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -27048,7 +27078,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_scatter_add position(long position) {
                 return (double_scatter_add)super.position(position);
             }
-         
+        
                                                     public double_scatter_add() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -27062,7 +27092,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * indices: either scalar, vector, or N-dimensional array
          * updates: N-dimensional array
          */
-//         #if NOT_EXCLUDED(__scatter_sub)
+//         #if NOT_EXCLUDED(OP_scatter_sub)
         @Name("nd4j::ops::scatter_sub<float>") public static class float_scatter_sub extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -27073,7 +27103,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_scatter_sub position(long position) {
                 return (float_scatter_sub)super.position(position);
             }
-         
+        
                                                     public float_scatter_sub() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -27088,7 +27118,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_scatter_sub position(long position) {
                 return (half_scatter_sub)super.position(position);
             }
-         
+        
                                                     public half_scatter_sub() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -27103,7 +27133,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_scatter_sub position(long position) {
                 return (double_scatter_sub)super.position(position);
             }
-         
+        
                                                     public double_scatter_sub() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -27117,7 +27147,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * indices: either scalar, vector, or N-dimensional array
          * updates: N-dimensional array
          */
-//         #if NOT_EXCLUDED(__scatter_mul)
+//         #if NOT_EXCLUDED(OP_scatter_mul)
         @Name("nd4j::ops::scatter_mul<float>") public static class float_scatter_mul extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -27128,7 +27158,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_scatter_mul position(long position) {
                 return (float_scatter_mul)super.position(position);
             }
-         
+        
                                                     public float_scatter_mul() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -27143,7 +27173,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_scatter_mul position(long position) {
                 return (half_scatter_mul)super.position(position);
             }
-         
+        
                                                     public half_scatter_mul() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -27158,7 +27188,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_scatter_mul position(long position) {
                 return (double_scatter_mul)super.position(position);
             }
-         
+        
                                                     public double_scatter_mul() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -27172,7 +27202,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * indices: either scalar, vector, or N-dimensional array
          * updates: N-dimensional array
          */
-//         #if NOT_EXCLUDED(__scatter_div)
+//         #if NOT_EXCLUDED(OP_scatter_div)
         @Name("nd4j::ops::scatter_div<float>") public static class float_scatter_div extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -27183,7 +27213,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_scatter_div position(long position) {
                 return (float_scatter_div)super.position(position);
             }
-         
+        
                                                     public float_scatter_div() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -27198,7 +27228,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_scatter_div position(long position) {
                 return (half_scatter_div)super.position(position);
             }
-         
+        
                                                     public half_scatter_div() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -27213,7 +27243,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_scatter_div position(long position) {
                 return (double_scatter_div)super.position(position);
             }
-         
+        
                                                     public double_scatter_div() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -27227,7 +27257,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * indices: either scalar, vector, or N-dimensional array
          * updates: N-dimensional array
          */
-//         #if NOT_EXCLUDED(__scatter_upd)
+//         #if NOT_EXCLUDED(OP_scatter_upd)
         @Name("nd4j::ops::scatter_upd<float>") public static class float_scatter_upd extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -27238,7 +27268,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_scatter_upd position(long position) {
                 return (float_scatter_upd)super.position(position);
             }
-         
+        
                                                     public float_scatter_upd() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -27253,7 +27283,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_scatter_upd position(long position) {
                 return (half_scatter_upd)super.position(position);
             }
-         
+        
                                                     public half_scatter_upd() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -27268,7 +27298,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_scatter_upd position(long position) {
                 return (double_scatter_upd)super.position(position);
             }
-         
+        
                                                     public double_scatter_upd() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -27283,7 +27313,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * T args:
          * 0: scalar value, used to fill NDArray
          */
-//         #if NOT_EXCLUDED(__fill_as)
+//         #if NOT_EXCLUDED(OP_fill_as)
         @Name("nd4j::ops::fill_as<float>") public static class float_fill_as extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -27334,7 +27364,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         /**
          * This operation applies element-wise rint (round to integral value) operation
          */
-//         #if NOT_EXCLUDED(__rint)
+//         #if NOT_EXCLUDED(OP_rint)
         @Name("nd4j::ops::rint<float>") public static class float_rint extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -27345,7 +27375,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_rint position(long position) {
                 return (float_rint)super.position(position);
             }
-         
+        
                                                     public float_rint() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -27360,7 +27390,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_rint position(long position) {
                 return (half_rint)super.position(position);
             }
-         
+        
                                                     public half_rint() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -27375,7 +27405,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_rint position(long position) {
                 return (double_rint)super.position(position);
             }
-         
+        
                                                     public double_rint() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -27387,7 +27417,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * Expected input:
          * input: N-dimensional array
          */
-//         #if NOT_EXCLUDED(__unique)
+//         #if NOT_EXCLUDED(OP_unique)
         @Name("nd4j::ops::unique<float>") public static class float_unique extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -27445,7 +27475,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          *     1 - 1D array with ids for values in array above
          *     2 - 1D array with counts for values in array above
          */
-//         #if NOT_EXCLUDED(__unique_with_counts)
+//         #if NOT_EXCLUDED(OP_unique_with_counts)
         @Name("nd4j::ops::unique_with_counts<float>") public static class float_unique_with_counts extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -27501,7 +27531,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * Int args:
          * 0..: TAD axis
          */
-//         #if NOT_EXCLUDED(__tear)
+//         #if NOT_EXCLUDED(OP_tear)
         @Name("nd4j::ops::tear<float>") public static class float_tear extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -27553,7 +27583,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * This op does the same as tear, just uses different input format:
          * \tparam T
          */
-//         #if NOT_EXCLUDED(__unstack)
+//         #if NOT_EXCLUDED(OP_unstack)
         @Name("nd4j::ops::unstack<float>") public static class float_unstack extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -27604,7 +27634,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         /**
          * This operation extracts a strided (optionally) slice from a tensor, 
          */
-//         #if NOT_EXCLUDED(__strided_slice)
+//         #if NOT_EXCLUDED(OP_strided_slice)
         @Name("nd4j::ops::strided_slice<float>") public static class float_strided_slice extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -27701,7 +27731,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * This operation extracts a slice from a tensor.
          * 
          */
-//         #if NOT_EXCLUDED(__slice)
+//         #if NOT_EXCLUDED(OP_slice)
         @Name("nd4j::ops::slice<float>") public static class float_slice extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -27811,7 +27841,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 1: optional scalar with end value
          * 1: optional scalar witn step value
          */
-//         #if NOT_EXCLUDED(__range)
+//         #if NOT_EXCLUDED(OP_range)
         @Name("nd4j::ops::range<float>") public static class float_range extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -27872,7 +27902,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 0: depth
          * 1: axis
          */
-//         #if NOT_EXCLUDED(__onehot)
+//         #if NOT_EXCLUDED(OP_onehot)
         @Name("nd4j::ops::onehot<float>") public static class float_onehot extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -27933,7 +27963,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          *   0 - num_classes: optional
          *
          */
-//         #if NOT_EXCLUDED(__confusion_matrix)
+//         #if NOT_EXCLUDED(OP_confusion_matrix)
         @Name("nd4j::ops::confusion_matrix<float>") public static class float_confusion_matrix extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -27987,7 +28017,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
 		 * 0...: N-Dimensional arrays to stack
 		 * 
 		 */
-//         #if NOT_EXCLUDED(__stack)
+//         #if NOT_EXCLUDED(OP_stack)
         @Name("nd4j::ops::stack<float>") public static class float_stack extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -28042,7 +28072,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * TODO: make this operation reduction, to allow TAD -> size
          */
-//         #if NOT_EXCLUDED(__size)
+//         #if NOT_EXCLUDED(OP_size)
         @Name("nd4j::ops::size<float>") public static class float_size extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -28094,7 +28124,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         /**
          * This operation returns rank of input array as scalar value.
          */
-//         #if NOT_EXCLUDED(__rank)
+//         #if NOT_EXCLUDED(OP_rank)
         @Name("nd4j::ops::rank<float>") public static class float_rank extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -28143,7 +28173,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
 //         #endif
 
 
-//         #if NOT_EXCLUDED(__broadcastgradientargs)
+//         #if NOT_EXCLUDED(OP_broadcastgradientargs)
         @Name("nd4j::ops::broadcastgradientargs<float>") public static class float_broadcastgradientargs extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -28154,7 +28184,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_broadcastgradientargs position(long position) {
                 return (float_broadcastgradientargs)super.position(position);
             }
-         
+        
                                                     public float_broadcastgradientargs() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -28169,7 +28199,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_broadcastgradientargs position(long position) {
                 return (half_broadcastgradientargs)super.position(position);
             }
-         
+        
                                                     public half_broadcastgradientargs() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -28184,7 +28214,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_broadcastgradientargs position(long position) {
                 return (double_broadcastgradientargs)super.position(position);
             }
-         
+        
                                                     public double_broadcastgradientargs() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -28197,7 +28227,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * input: N-dimensional array
          * 
          */
-//         #if NOT_EXCLUDED(__zeros_as)
+//         #if NOT_EXCLUDED(OP_zeros_as)
         @Name("nd4j::ops::zeros_as<float>") public static class float_zeros_as extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -28208,7 +28238,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_zeros_as position(long position) {
                 return (float_zeros_as)super.position(position);
             }
-         
+        
                                                     public float_zeros_as() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -28223,7 +28253,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_zeros_as position(long position) {
                 return (half_zeros_as)super.position(position);
             }
-         
+        
                                                     public half_zeros_as() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -28238,7 +28268,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_zeros_as position(long position) {
                 return (double_zeros_as)super.position(position);
             }
-         
+        
                                                     public double_zeros_as() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -28251,7 +28281,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * input: N-dimensional array
          * 
          */
-//         #if NOT_EXCLUDED(__ones_as)
+//         #if NOT_EXCLUDED(OP_ones_as)
         @Name("nd4j::ops::ones_as<float>") public static class float_ones_as extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -28262,7 +28292,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_ones_as position(long position) {
                 return (float_ones_as)super.position(position);
             }
-         
+        
                                                     public float_ones_as() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -28277,7 +28307,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_ones_as position(long position) {
                 return (half_ones_as)super.position(position);
             }
-         
+        
                                                     public half_ones_as() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -28292,7 +28322,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_ones_as position(long position) {
                 return (double_ones_as)super.position(position);
             }
-         
+        
                                                     public double_ones_as() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -28304,7 +28334,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * Expected arguments:
          * input: N-Dimensional array
          */
-//         #if NOT_EXCLUDED(__square)
+//         #if NOT_EXCLUDED(OP_square)
         @Name("nd4j::ops::square<float>") public static class float_square extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -28315,7 +28345,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_square position(long position) {
                 return (float_square)super.position(position);
             }
-         
+        
                                                     public float_square() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -28330,7 +28360,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_square position(long position) {
                 return (half_square)super.position(position);
             }
-         
+        
                                                     public half_square() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -28345,7 +28375,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_square position(long position) {
                 return (double_square)super.position(position);
             }
-         
+        
                                                     public double_square() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -28365,7 +28395,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         *
         * Two input and one output arrays must have the same shape
         */
-//         #if NOT_EXCLUDED(__zeta)
+//         #if NOT_EXCLUDED(OP_zeta)
         @Name("nd4j::ops::zeta<float>") public static class float_zeta extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -28427,7 +28457,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         *
         * Two input and one output arrays have the same shape
         */
-//         #if NOT_EXCLUDED(__polygamma)
+//         #if NOT_EXCLUDED(OP_polygamma)
         @Name("nd4j::ops::polygamma<float>") public static class float_polygamma extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -28485,7 +28515,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 0 - optional scalar value
          * 
          */
-//         #if NOT_EXCLUDED(__fill)
+//         #if NOT_EXCLUDED(OP_fill)
         @Name("nd4j::ops::fill<float>") public static class float_fill extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -28544,7 +28574,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 0 - optional axis
          * 
          */
-//         #if NOT_EXCLUDED(__split_v)
+//         #if NOT_EXCLUDED(OP_split_v)
         @Name("nd4j::ops::split_v<float>") public static class float_split_v extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -28601,7 +28631,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 0 - number of splits
          * 1 - optional axis
          */
-//         #if NOT_EXCLUDED(__split)
+//         #if NOT_EXCLUDED(OP_split)
         @Name("nd4j::ops::split<float>") public static class float_split extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -28662,7 +28692,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * Int arguments:
          * 0 - optional argument, isNHWC. false by default.
          */
-//         #if NOT_EXCLUDED(__adjust_hue)
+//         #if NOT_EXCLUDED(OP_adjust_hue)
         @Name("nd4j::ops::adjust_hue<float>") public static class float_adjust_hue extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -28722,7 +28752,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * Int arguments:
          * 0 - optional argument, isNHWC. false by default.
          */
-//         #if NOT_EXCLUDED(__adjust_saturation)
+//         #if NOT_EXCLUDED(OP_adjust_saturation)
         @Name("nd4j::ops::adjust_saturation<float>") public static class float_adjust_saturation extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -28776,7 +28806,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          *
          */
-//         #if NOT_EXCLUDED(__depth_to_space)
+//         #if NOT_EXCLUDED(OP_depth_to_space)
         @Name("nd4j::ops::depth_to_space<float>") public static class float_depth_to_space extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -28829,7 +28859,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          *
          */
-//         #if NOT_EXCLUDED(__space_to_depth)
+//         #if NOT_EXCLUDED(OP_space_to_depth)
         @Name("nd4j::ops::space_to_depth<float>") public static class float_space_to_depth extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -28883,7 +28913,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 0 - vector or tensor A
          * 1 - vector or tensor B
          */
-//         #if NOT_EXCLUDED(__cross)
+//         #if NOT_EXCLUDED(OP_cross)
         @Name("nd4j::ops::cross<float>") public static class float_cross extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -28894,7 +28924,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_cross position(long position) {
                 return (float_cross)super.position(position);
             }
-         
+        
                                                     public float_cross() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -28909,7 +28939,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_cross position(long position) {
                 return (half_cross)super.position(position);
             }
-         
+        
                                                     public half_cross() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -28924,7 +28954,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_cross position(long position) {
                 return (double_cross)super.position(position);
             }
-         
+        
                                                     public double_cross() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -28935,7 +28965,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * 
          */
-//         #if NOT_EXCLUDED(__space_to_batch)
+//         #if NOT_EXCLUDED(OP_space_to_batch)
         @Name("nd4j::ops::space_to_batch<float>") public static class float_space_to_batch extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -28987,7 +29017,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * 
          */
-//         #if NOT_EXCLUDED(__batch_to_space)
+//         #if NOT_EXCLUDED(OP_batch_to_space)
         @Name("nd4j::ops::batch_to_space<float>") public static class float_batch_to_space extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -29044,7 +29074,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          *  The second is k (default 1) - optional
          *  The third is boolean value(default is 1) (0 - as is, 1 - sorted by value) optional
          */
-//         #if NOT_EXCLUDED(__top_k)
+//         #if NOT_EXCLUDED(OP_top_k)
         @Name("nd4j::ops::top_k<float>") public static class float_top_k extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -29099,7 +29129,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          *  The second is NDArray as vector of indeces k top values will be search.
          *  The third is k
          */
-//         #if NOT_EXCLUDED(__in_top_k)
+//         #if NOT_EXCLUDED(OP_in_top_k)
         @Name("nd4j::ops::in_top_k<float>") public static class float_in_top_k extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -29154,7 +29184,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * Otherwise there are two NDArrays with means and variances for 
          * Axes can be put as the second NDArray or as int vector.
          */
-//         #if NOT_EXCLUDED(__moments)
+//         #if NOT_EXCLUDED(OP_moments)
         @Name("nd4j::ops::moments<float>") public static class float_moments extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -29206,7 +29236,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * embedding_lookup - search for submatrices in given matrix and retunts them
          * accordingly to index array given.
          */
-//         #if NOT_EXCLUDED(__embedding_lookup)
+//         #if NOT_EXCLUDED(OP_embedding_lookup)
         @Name("nd4j::ops::embedding_lookup<float>") public static class float_embedding_lookup extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -29264,7 +29294,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * returns a num of NDArrays as output
          */
-//         #if NOT_EXCLUDED(__dynamic_partition)
+//         #if NOT_EXCLUDED(OP_dynamic_partition)
         @Name("nd4j::ops::dynamic_partition<float>") public static class float_dynamic_partition extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -29323,7 +29353,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * the operation is inversion od dynamic_partition
          */
-//         #if NOT_EXCLUDED(__dynamic_stitch)
+//         #if NOT_EXCLUDED(OP_dynamic_stitch)
         @Name("nd4j::ops::dynamic_stitch<float>") public static class float_dynamic_stitch extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -29378,7 +29408,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * input param - an array (tensor)
          * output value - a real number with given type (e.g. float or double)
          */
-//         #if NOT_EXCLUDED(__zero_fraction)
+//         #if NOT_EXCLUDED(OP_zero_fraction)
         @Name("nd4j::ops::zero_fraction<float>") public static class float_zero_fraction extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -29436,7 +29466,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          *   - 1D vector with N elements
          * output value - 2D matrix NxN as multiply of matrixes and add vector
          */
-//         #if NOT_EXCLUDED(__xw_plus_b)
+//         #if NOT_EXCLUDED(OP_xw_plus_b)
         @Name("nd4j::ops::xw_plus_b<float>") public static class float_xw_plus_b extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -29489,7 +29519,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * Input and output params are the same after operation.
          * Input - NDArray, output - NDArray with the same shape.
          */
-//         #if NOT_EXCLUDED(__stop_gradient)
+//         #if NOT_EXCLUDED(OP_stop_gradient)
         @Name("nd4j::ops::stop_gradient<float>") public static class float_stop_gradient extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -29500,7 +29530,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_stop_gradient position(long position) {
                 return (float_stop_gradient)super.position(position);
             }
-         
+        
                                                     public float_stop_gradient() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -29515,7 +29545,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_stop_gradient position(long position) {
                 return (half_stop_gradient)super.position(position);
             }
-         
+        
                                                     public half_stop_gradient() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -29530,7 +29560,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_stop_gradient position(long position) {
                 return (double_stop_gradient)super.position(position);
             }
-         
+        
                                                     public double_stop_gradient() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -29544,7 +29574,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * input param - an array (tensor)
          * output value - a real number with given type (e.g. float or double)
          */
-//         #if NOT_EXCLUDED(__l2_loss)
+//         #if NOT_EXCLUDED(OP_l2_loss)
         @Name("nd4j::ops::l2_loss<float>") public static class float_l2_loss extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -29592,7 +29622,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__parallel_stack)
+//         #if NOT_EXCLUDED(OP_parallel_stack)
         @Name("nd4j::ops::parallel_stack<float>") public static class float_parallel_stack extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -29647,7 +29677,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          *  1 - input
          *  optional int - boolean value compute_full_loss: 0 (default) or 1 (compute)
          */
-//         #if NOT_EXCLUDED(__log_poison_loss)
+//         #if NOT_EXCLUDED(OP_log_poison_loss)
         @Name("nd4j::ops::log_poison_loss<float>") public static class float_log_poison_loss extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -29707,7 +29737,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          *  returns a normalized pair mean and variance with the same shapes as input
          */
-//         #if NOT_EXCLUDED(__normalize_moments)
+//         #if NOT_EXCLUDED(OP_normalize_moments)
         @Name("nd4j::ops::normalize_moments<float>") public static class float_normalize_moments extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -29773,7 +29803,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          *     - sum of squares of input (accross axises)
          *     - shift (if was given by input floating param)
          */
-//         #if NOT_EXCLUDED(__sufficient_statistics)
+//         #if NOT_EXCLUDED(OP_sufficient_statistics)
         @Name("nd4j::ops::sufficient_statistics<float>") public static class float_sufficient_statistics extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -29825,7 +29855,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * Special atan2 op impl for TF's args order
          * \tparam T
          */
-//         #if NOT_EXCLUDED(__tf_atan2)
+//         #if NOT_EXCLUDED(OP_tf_atan2)
         @Name("nd4j::ops::tf_atan2<float>") public static class float_tf_atan2 extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -29836,7 +29866,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_tf_atan2 position(long position) {
                 return (float_tf_atan2)super.position(position);
             }
-         
+        
                                                     public float_tf_atan2() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -29851,7 +29881,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_tf_atan2 position(long position) {
                 return (half_tf_atan2)super.position(position);
             }
-         
+        
                                                     public half_tf_atan2() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -29866,7 +29896,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_tf_atan2 position(long position) {
                 return (double_tf_atan2)super.position(position);
             }
-         
+        
                                                     public double_tf_atan2() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -29882,7 +29912,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          *  
          *  return value - a tensor with the same shape as target or input
          */
-//         #if NOT_EXCLUDED(__weighted_cross_entropy_with_logits)
+//         #if NOT_EXCLUDED(OP_weighted_cross_entropy_with_logits)
         @Name("nd4j::ops::weighted_cross_entropy_with_logits<float>") public static class float_weighted_cross_entropy_with_logits extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -29893,7 +29923,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_weighted_cross_entropy_with_logits position(long position) {
                 return (float_weighted_cross_entropy_with_logits)super.position(position);
             }
-         
+        
                                                     public float_weighted_cross_entropy_with_logits() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -29908,7 +29938,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_weighted_cross_entropy_with_logits position(long position) {
                 return (half_weighted_cross_entropy_with_logits)super.position(position);
             }
-         
+        
                                                     public half_weighted_cross_entropy_with_logits() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -29923,7 +29953,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_weighted_cross_entropy_with_logits position(long position) {
                 return (double_weighted_cross_entropy_with_logits)super.position(position);
             }
-         
+        
                                                     public double_weighted_cross_entropy_with_logits() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -29940,7 +29970,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          *  T parameter - probability (should be between 0 and 1)
          *  return value - a tensor with the same shape as target or input
          */
-//         #if NOT_EXCLUDED(__dropout)
+//         #if NOT_EXCLUDED(OP_dropout)
         @Name("nd4j::ops::dropout<float>") public static class float_dropout extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -30006,7 +30036,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          *  of values in indexed place
          *
          */
-//         #if NOT_EXCLUDED(__bincount)
+//         #if NOT_EXCLUDED(OP_bincount)
         @Name("nd4j::ops::bincount<float>") public static class float_bincount extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -30064,7 +30094,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * return value:
          *    vector with broadcasted shape 
          */
-//         #if NOT_EXCLUDED(__broadcast_dynamic_shape)
+//         #if NOT_EXCLUDED(OP_broadcast_dynamic_shape)
         @Name("nd4j::ops::broadcast_dynamic_shape<float>") public static class float_broadcast_dynamic_shape extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -30122,7 +30152,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          *    tensor with dimension (x * y * z * ::: *) with determinant for all 
          * M x M matricies
          */
-//         #if NOT_EXCLUDED(__matrix_determinant)
+//         #if NOT_EXCLUDED(OP_matrix_determinant)
         @Name("nd4j::ops::matrix_determinant<float>") public static class float_matrix_determinant extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -30179,7 +30209,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * return value:
          *    tensor with dimension (x * y * z * ::: * M * M) with inverse M x M matricies in it 
          */
-//         #if NOT_EXCLUDED(__matrix_inverse)
+//         #if NOT_EXCLUDED(OP_matrix_inverse)
         @Name("nd4j::ops::matrix_inverse<float>") public static class float_matrix_inverse extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -30190,7 +30220,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_matrix_inverse position(long position) {
                 return (float_matrix_inverse)super.position(position);
             }
-         
+        
                                                     public float_matrix_inverse() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -30205,7 +30235,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_matrix_inverse position(long position) {
                 return (half_matrix_inverse)super.position(position);
             }
-         
+        
                                                     public half_matrix_inverse() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -30220,7 +30250,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_matrix_inverse position(long position) {
                 return (double_matrix_inverse)super.position(position);
             }
-         
+        
                                                     public double_matrix_inverse() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -30241,7 +30271,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
 // #define LIBND4J_HEADERS_SHAPE_H
 
 // #include <ops/declarable/headers/common.h>
-//         #if NOT_EXCLUDED(__permute)
+//         #if NOT_EXCLUDED(OP_permute)
         @Name("nd4j::ops::permute<float>") public static class float_permute extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -30289,7 +30319,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }   
 //         #endif
 
-//         #if NOT_EXCLUDED(__reshapeas)
+//         #if NOT_EXCLUDED(OP_reshapeas)
         @Name("nd4j::ops::reshapeas<float>") public static class float_reshapeas extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -30337,7 +30367,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }      
 //         #endif
 
-//         #if NOT_EXCLUDED(__transpose)
+//         #if NOT_EXCLUDED(OP_transpose)
         @Name("nd4j::ops::transpose<float>") public static class float_transpose extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -30385,7 +30415,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__shape_of)
+//         #if NOT_EXCLUDED(OP_shape_of)
         @Name("nd4j::ops::shape_of<float>") public static class float_shape_of extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -30433,7 +30463,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__shapes_of)
+//         #if NOT_EXCLUDED(OP_shapes_of)
         @Name("nd4j::ops::shapes_of<float>") public static class float_shapes_of extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -30481,7 +30511,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__squeeze)
+//         #if NOT_EXCLUDED(OP_squeeze)
         @Name("nd4j::ops::squeeze<float>") public static class float_squeeze extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -30529,7 +30559,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__expand_dims)
+//         #if NOT_EXCLUDED(OP_expand_dims)
         @Name("nd4j::ops::expand_dims<float>") public static class float_expand_dims extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -30577,7 +30607,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__reshape)
+//         #if NOT_EXCLUDED(OP_reshape)
         @Name("nd4j::ops::reshape<float>") public static class float_reshape extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -30634,7 +30664,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          *
          * \tparam T
          */
-//         #if NOT_EXCLUDED(__order)
+//         #if NOT_EXCLUDED(OP_order)
         @Name("nd4j::ops::order<float>") public static class float_order extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -30687,7 +30717,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          *
          * \tparam T
          */
-//         #if NOT_EXCLUDED(__tile_to_shape)
+//         #if NOT_EXCLUDED(OP_tile_to_shape)
         @Name("nd4j::ops::tile_to_shape<float>") public static class float_tile_to_shape extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -30794,7 +30824,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
 // #define LIBND4J_HEADERS_RANDOM_H
 
 // #include <ops/declarable/headers/common.h>
-//         #if NOT_EXCLUDED(__set_seed)
+//         #if NOT_EXCLUDED(OP_set_seed)
         @Name("nd4j::ops::set_seed<float>") public static class float_set_seed extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -30842,7 +30872,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__get_seed)
+//         #if NOT_EXCLUDED(OP_get_seed)
         @Name("nd4j::ops::get_seed<float>") public static class float_get_seed extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -30890,7 +30920,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
        
-//         #if NOT_EXCLUDED(__randomuniform)
+//         #if NOT_EXCLUDED(OP_randomuniform)
         @Name("nd4j::ops::randomuniform<float>") public static class float_randomuniform extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -30938,7 +30968,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__random_normal)
+//         #if NOT_EXCLUDED(OP_random_normal)
         @Name("nd4j::ops::random_normal<float>") public static class float_random_normal extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -30986,7 +31016,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__random_bernoulli)
+//         #if NOT_EXCLUDED(OP_random_bernoulli)
         @Name("nd4j::ops::random_bernoulli<float>") public static class float_random_bernoulli extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -31034,7 +31064,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__random_exponential)
+//         #if NOT_EXCLUDED(OP_random_exponential)
         @Name("nd4j::ops::random_exponential<float>") public static class float_random_exponential extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -31097,7 +31127,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
 
 // #include <ops/declarable/headers/common.h>
 
-//         #if NOT_EXCLUDED(__softmax)
+//         #if NOT_EXCLUDED(OP_softmax)
         @Name("nd4j::ops::softmax<float>") public static class float_softmax extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -31202,7 +31232,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 2: bias
          * 3: depth
          */
-//         #if NOT_EXCLUDED(__lrn_old)
+//         #if NOT_EXCLUDED(OP_lrn_old)
         @Name("nd4j::ops::lrn_old<float>") public static class float_lrn_old extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -31264,7 +31294,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * output - 4D array 
          */
-//         #if NOT_EXCLUDED(__lrn)
+//         #if NOT_EXCLUDED(OP_lrn)
         @Name("nd4j::ops::lrn<float>") public static class float_lrn extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -31328,7 +31358,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          *
          * output - next approximation as 4D array
          */
-//         #if NOT_EXCLUDED(__lrn)
+//         #if NOT_EXCLUDED(OP_lrn)
         @Name("nd4j::ops::lrn_bp<float>") public static class float_lrn_bp extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -31395,7 +31425,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
         * T args:
         * 0: epsilon
         */
-//         #if NOT_EXCLUDED(__batchnorm)
+//         #if NOT_EXCLUDED(OP_batchnorm)
         @Name("nd4j::ops::batchnorm<float>") public static class float_batchnorm extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -31453,7 +31483,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * T args:
          * 0: optional, learning rate
          */
-//         #if NOT_EXCLUDED(__apply_sgd)
+//         #if NOT_EXCLUDED(OP_apply_sgd)
         @Name("nd4j::ops::apply_sgd<float>") public static class float_apply_sgd extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -31521,7 +31551,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 0: dataFormat, may have two values: zero -> NHWC, unity -> NCHW
          * 1: isTraining, may have two values: zero -> inference, unity -> training
          */
-//         #if NOT_EXCLUDED(__fused_batch_norm)
+//         #if NOT_EXCLUDED(OP_fused_batch_norm)
         @Name("nd4j::ops::fused_batch_norm<float>") public static class float_fused_batch_norm extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -31569,7 +31599,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__log_softmax)
+//         #if NOT_EXCLUDED(OP_log_softmax)
         @Name("nd4j::ops::log_softmax<float>") public static class float_log_softmax extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -31693,7 +31723,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 0: transA (where applicable)
          * 1: transB (where applicable)
          */
-//         #if NOT_EXCLUDED(__matmul)
+//         #if NOT_EXCLUDED(OP_matmul)
         @Name("nd4j::ops::matmul<float>") public static class float_matmul extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -31751,7 +31781,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * IArgs[] - number of axes along for second array
          * IArgs[1]... axes values for second array
          */
-//         #if NOT_EXCLUDED(__tensormmul)
+//         #if NOT_EXCLUDED(OP_tensormmul)
         @Name("nd4j::ops::tensormmul<float>") public static class float_tensormmul extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -31803,7 +31833,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * This op is simple implementation of BLAS AXPY method.
          * Math is: y += a * x;
          */
-//         #if NOT_EXCLUDED(__axpy)
+//         #if NOT_EXCLUDED(OP_axpy)
         @Name("nd4j::ops::axpy<float>") public static class float_axpy extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -31864,7 +31894,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * PLEASE NOTE: M, N, K, ldA, ldB, ldC should be equal for all matrices within batch.
          */
-//         #if NOT_EXCLUDED(__batched_gemm)
+//         #if NOT_EXCLUDED(OP_batched_gemm)
         @Name("nd4j::ops::batched_gemm<float>") public static class float_batched_gemm extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -31931,7 +31961,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          *            if diagSize < IArgs[2] then Jacobi algorithm is used, in opposite case the Divide-And-Conquer is applied
          *            Recommended value is 16. 
          */
-//         #if NOT_EXCLUDED(__svd)
+//         #if NOT_EXCLUDED(OP_svd)
         @Name("nd4j::ops::svd<float>") public static class float_svd extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -31989,7 +32019,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
 //  @author raver119@gmail.com
 //
 // #include <ops/declarable/headers/common.h>
-//         #if NOT_EXCLUDED(__test_output_reshape)
+//         #if NOT_EXCLUDED(OP_test_output_reshape)
         @Name("nd4j::ops::test_output_reshape<float>") public static class float_test_output_reshape extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -32000,7 +32030,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_test_output_reshape position(long position) {
                 return (float_test_output_reshape)super.position(position);
             }
-         
+        
                                                     public float_test_output_reshape() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -32015,7 +32045,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_test_output_reshape position(long position) {
                 return (half_test_output_reshape)super.position(position);
             }
-         
+        
                                                     public half_test_output_reshape() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -32030,14 +32060,14 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_test_output_reshape position(long position) {
                 return (double_test_output_reshape)super.position(position);
             }
-         
+        
                                                     public double_test_output_reshape() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__test_scalar)
+//         #if NOT_EXCLUDED(OP_test_scalar)
         @Name("nd4j::ops::test_scalar<float>") public static class float_test_scalar extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -32085,7 +32115,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__testreduction)
+//         #if NOT_EXCLUDED(OP_testreduction)
         @Name("nd4j::ops::testreduction<float>") public static class float_testreduction extends FloatDeclarableReductionOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -32130,7 +32160,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
                                                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__noop)
+//         #if NOT_EXCLUDED(OP_noop)
         @Name("nd4j::ops::noop<float>") public static class float_noop extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -32141,7 +32171,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_noop position(long position) {
                 return (float_noop)super.position(position);
             }
-         
+        
                                                     public float_noop() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -32156,7 +32186,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_noop position(long position) {
                 return (half_noop)super.position(position);
             }
-         
+        
                                                     public half_noop() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -32171,14 +32201,14 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_noop position(long position) {
                 return (double_noop)super.position(position);
             }
-         
+        
                                                     public double_noop() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__testop2i2o)
+//         #if NOT_EXCLUDED(OP_testop2i2o)
         @Name("nd4j::ops::testop2i2o<float>") public static class float_testop2i2o extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -32189,7 +32219,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_testop2i2o position(long position) {
                 return (float_testop2i2o)super.position(position);
             }
-         
+        
                                                     public float_testop2i2o() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -32204,7 +32234,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_testop2i2o position(long position) {
                 return (half_testop2i2o)super.position(position);
             }
-         
+        
                                                     public half_testop2i2o() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -32219,14 +32249,14 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_testop2i2o position(long position) {
                 return (double_testop2i2o)super.position(position);
             }
-         
+        
                                                     public double_testop2i2o() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
                                                 }
 //         #endif
 
-//         #if NOT_EXCLUDED(__testcustom)
+//         #if NOT_EXCLUDED(OP_testcustom)
         @Name("nd4j::ops::testcustom<float>") public static class float_testcustom extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -32293,7 +32323,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * \tparam T
          */
-//         #if NOT_EXCLUDED(__toggle_bits)
+//         #if NOT_EXCLUDED(OP_toggle_bits)
         @Name("nd4j::ops::toggle_bits<float>") public static class float_toggle_bits extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -32304,7 +32334,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_toggle_bits position(long position) {
                 return (float_toggle_bits)super.position(position);
             }
-         
+        
                                                     public float_toggle_bits() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -32319,7 +32349,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_toggle_bits position(long position) {
                 return (half_toggle_bits)super.position(position);
             }
-         
+        
                                                     public half_toggle_bits() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -32334,7 +32364,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_toggle_bits position(long position) {
                 return (double_toggle_bits)super.position(position);
             }
-         
+        
                                                     public double_toggle_bits() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -32378,7 +32408,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
        *    0: loss values, type float.
        *       Can be an array with the same shape as logits or just single scalar, depending on reduction mode (see input integer argument)
        */               
-//         #if NOT_EXCLUDED(__hinge_loss)
+//         #if NOT_EXCLUDED(OP_hinge_loss)
         @Name("nd4j::ops::hinge_loss<float>") public static class float_hinge_loss extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -32454,7 +32484,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
        *    0: loss values, type float.
        *       Can be an array with the same shape as predictions or just single scalar, depending on reduction mode (see input integer argument)
        */      
-//         #if NOT_EXCLUDED(__huber_loss)
+//         #if NOT_EXCLUDED(OP_huber_loss)
         @Name("nd4j::ops::huber_loss<float>") public static class float_huber_loss extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -32528,7 +32558,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
        *    0: loss values, type float.
        *       Can be an array with the same shape as predictions or just single scalar, depending on reduction mode (see input integer argument)
        */      
-//         #if NOT_EXCLUDED(__log_loss)
+//         #if NOT_EXCLUDED(OP_log_loss)
         @Name("nd4j::ops::log_loss<float>") public static class float_log_loss extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -32591,7 +32621,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
        * Output array: 
        *    0: loss value, it is just single scalar, type float.
        */     
-//         #if NOT_EXCLUDED(__mean_pairwssqerr_loss)
+//         #if NOT_EXCLUDED(OP_mean_pairwssqerr_loss)
         @Name("nd4j::ops::mean_pairwssqerr_loss<float>") public static class float_mean_pairwssqerr_loss extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -32662,7 +32692,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
        *    0: loss values, type float.
        *       Can be an array with the same shape as predictions or just single scalar, depending on reduction mode (see input integer argument)
        */      
-//         #if NOT_EXCLUDED(__mean_sqerr_loss)
+//         #if NOT_EXCLUDED(OP_mean_sqerr_loss)
         @Name("nd4j::ops::mean_sqerr_loss<float>") public static class float_mean_sqerr_loss extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -32736,7 +32766,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
        *    0: loss values, type float.
        *       Can be an array with the same shape as logits or just single scalar, depending on reduction mode (see input integer argument)
        */      
-//         #if NOT_EXCLUDED(__sigm_cross_entropy_loss)
+//         #if NOT_EXCLUDED(OP_sigm_cross_entropy_loss)
         @Name("nd4j::ops::sigm_cross_entropy_loss<float>") public static class float_sigm_cross_entropy_loss extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -32810,7 +32840,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
        *    0: loss values, type float.
        *       Can be an array with shape as in logits except last dimension is equal to unity or just single scalar, depending on reduction mode (see input integer argument)
        */      
-//         #if NOT_EXCLUDED(__softmax_cross_entropy_loss)
+//         #if NOT_EXCLUDED(OP_softmax_cross_entropy_loss)
         @Name("nd4j::ops::softmax_cross_entropy_loss<float>") public static class float_softmax_cross_entropy_loss extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -32881,7 +32911,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
        *    0: loss values, type float.
        *       Can be an array with the same shape as predictions or just single scalar, depending on reduction mode (see input integer argument)
        */      
-//         #if NOT_EXCLUDED(__absolute_difference_loss)
+//         #if NOT_EXCLUDED(OP_absolute_difference_loss)
         @Name("nd4j::ops::absolute_difference_loss<float>") public static class float_absolute_difference_loss extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -32953,7 +32983,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
        *    0: loss values, type float.
        *       Can be an array with the same shape as predictions or just single scalar, depending on reduction mode (see input integer argument)
        */         
-//         #if NOT_EXCLUDED(__cosine_distance_loss)
+//         #if NOT_EXCLUDED(OP_cosine_distance_loss)
         @Name("nd4j::ops::cosine_distance_loss<float>") public static class float_cosine_distance_loss extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -33019,7 +33049,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * PLEASE NOTE: This op is disabled atm, and reserved for future releases.
          */
-//         #if NOT_EXCLUDED(__to_double)
+//         #if NOT_EXCLUDED(OP_to_double)
         @Name("nd4j::ops::to_double<float>") public static class float_to_double extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -33030,7 +33060,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_to_double position(long position) {
                 return (float_to_double)super.position(position);
             }
-         
+        
                                                     public float_to_double() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -33045,7 +33075,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_to_double position(long position) {
                 return (half_to_double)super.position(position);
             }
-         
+        
                                                     public half_to_double() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -33060,7 +33090,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_to_double position(long position) {
                 return (double_to_double)super.position(position);
             }
-         
+        
                                                     public double_to_double() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -33072,7 +33102,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * PLEASE NOTE: This op is disabled atm, and reserved for future releases.
          */
-//         #if NOT_EXCLUDED(__to_float16)
+//         #if NOT_EXCLUDED(OP_to_float16)
         @Name("nd4j::ops::to_float16<float>") public static class float_to_float16 extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -33083,7 +33113,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_to_float16 position(long position) {
                 return (float_to_float16)super.position(position);
             }
-         
+        
                                                     public float_to_float16() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -33098,7 +33128,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_to_float16 position(long position) {
                 return (half_to_float16)super.position(position);
             }
-         
+        
                                                     public half_to_float16() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -33113,7 +33143,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_to_float16 position(long position) {
                 return (double_to_float16)super.position(position);
             }
-         
+        
                                                     public double_to_float16() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -33125,7 +33155,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * PLEASE NOTE: This op is disabled atm, and reserved for future releases.
          */
-//         #if NOT_EXCLUDED(__to_float32)
+//         #if NOT_EXCLUDED(OP_to_float32)
         @Name("nd4j::ops::to_float32<float>") public static class float_to_float32 extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -33136,7 +33166,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_to_float32 position(long position) {
                 return (float_to_float32)super.position(position);
             }
-         
+        
                                                     public float_to_float32() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -33151,7 +33181,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_to_float32 position(long position) {
                 return (half_to_float32)super.position(position);
             }
-         
+        
                                                     public half_to_float32() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -33166,7 +33196,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_to_float32 position(long position) {
                 return (double_to_float32)super.position(position);
             }
-         
+        
                                                     public double_to_float32() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -33178,7 +33208,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * PLEASE NOTE: This op is disabled atm, and reserved for future releases.
          */
-//         #if NOT_EXCLUDED(__to_int32)
+//         #if NOT_EXCLUDED(OP_to_int32)
         @Name("nd4j::ops::to_int32<float>") public static class float_to_int32 extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -33189,7 +33219,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_to_int32 position(long position) {
                 return (float_to_int32)super.position(position);
             }
-         
+        
                                                     public float_to_int32() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -33204,7 +33234,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_to_int32 position(long position) {
                 return (half_to_int32)super.position(position);
             }
-         
+        
                                                     public half_to_int32() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -33219,7 +33249,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_to_int32 position(long position) {
                 return (double_to_int32)super.position(position);
             }
-         
+        
                                                     public double_to_int32() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -33231,7 +33261,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * PLEASE NOTE: This op is disabled atm, and reserved for future releases.
          */
-//         #if NOT_EXCLUDED(__to_int64)
+//         #if NOT_EXCLUDED(OP_to_int64)
         @Name("nd4j::ops::to_int64<float>") public static class float_to_int64 extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -33242,7 +33272,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_to_int64 position(long position) {
                 return (float_to_int64)super.position(position);
             }
-         
+        
                                                     public float_to_int64() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -33257,7 +33287,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_to_int64 position(long position) {
                 return (half_to_int64)super.position(position);
             }
-         
+        
                                                     public half_to_int64() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -33272,7 +33302,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_to_int64 position(long position) {
                 return (double_to_int64)super.position(position);
             }
-         
+        
                                                     public double_to_int64() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -33284,7 +33314,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * PLEASE NOTE: This op is disabled atm, and reserved for future releases.
          */
-//         #if NOT_EXCLUDED(__to_uint32)
+//         #if NOT_EXCLUDED(OP_to_uint32)
         @Name("nd4j::ops::to_uint32<float>") public static class float_to_uint32 extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -33295,7 +33325,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_to_uint32 position(long position) {
                 return (float_to_uint32)super.position(position);
             }
-         
+        
                                                     public float_to_uint32() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -33310,7 +33340,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_to_uint32 position(long position) {
                 return (half_to_uint32)super.position(position);
             }
-         
+        
                                                     public half_to_uint32() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -33325,7 +33355,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_to_uint32 position(long position) {
                 return (double_to_uint32)super.position(position);
             }
-         
+        
                                                     public double_to_uint32() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -33337,7 +33367,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * 
          * PLEASE NOTE: This op is disabled atm, and reserved for future releases.
          */
-//         #if NOT_EXCLUDED(__to_uint64)
+//         #if NOT_EXCLUDED(OP_to_uint64)
         @Name("nd4j::ops::to_uint64<float>") public static class float_to_uint64 extends FloatDeclarableOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -33348,7 +33378,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public float_to_uint64 position(long position) {
                 return (float_to_uint64)super.position(position);
             }
-         
+        
                                                     public float_to_uint64() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef FloatContext block);
@@ -33363,7 +33393,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public half_to_uint64 position(long position) {
                 return (half_to_uint64)super.position(position);
             }
-         
+        
                                                     public half_to_uint64() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef HalfContext block);
@@ -33378,7 +33408,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
             @Override public double_to_uint64 position(long position) {
                 return (double_to_uint64)super.position(position);
             }
-         
+        
                                                     public double_to_uint64() { super((Pointer)null); allocate(); }
                                                     private native void allocate();
                                                     public native ShapeList calculateOutputShape(ShapeList inputShape, @ByRef DoubleContext block);
@@ -33394,7 +33424,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
          * Int args:
          * 0: target DataType
          */
-//         #if NOT_EXCLUDED(__cast)
+//         #if NOT_EXCLUDED(OP_cast)
         @Name("nd4j::ops::cast<float>") public static class float_cast extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -33456,7 +33486,7 @@ public static final int TAD_THRESHOLD = TAD_THRESHOLD();
 // #define LIBND4J_HEADERS_TPARTY_H
 
 // #include <ops/declarable/headers/common.h>
-//         #if NOT_EXCLUDED(__firas_sparse)
+//         #if NOT_EXCLUDED(OP_firas_sparse)
         @Name("nd4j::ops::firas_sparse<float>") public static class float_firas_sparse extends FloatDeclarableCustomOp {
             static { Loader.load(); }
             /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
