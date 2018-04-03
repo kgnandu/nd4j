@@ -1,5 +1,5 @@
 #!groovy
-@Library('skymind@feature/add-nd4j-tests') _
+@Library('skymind@feature/add-release-logic') _
 
 /*
     To redefine some job/run parameters,
